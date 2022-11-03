@@ -11,7 +11,7 @@
 DJC is an online grocery store. 
 
 ###Features:
-1.Login/Logout
+1.Login/Logout.
 2.Registration
 3.Open another activity when user logs in
 4.Adding/Removing from cart
