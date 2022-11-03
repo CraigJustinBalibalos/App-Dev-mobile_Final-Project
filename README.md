@@ -9,6 +9,9 @@
 
 ## Project Description:
 DJC is an online grocery store. 
+### Categories:
+Drink, Fruit, Vegetable, Meat, Etc.
+
 
 ## Features:
 1. Login/Logout
