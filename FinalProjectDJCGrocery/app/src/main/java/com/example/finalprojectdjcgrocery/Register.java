@@ -58,8 +58,8 @@ public class Register extends AppCompatActivity {
         registerBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(username.getText().toString() != " " && password.getText().toString() != " " && confirmPass.getText().toString() != " "){
-                    if(password.getText().toString() == confirmPass.getText().toString()) {
+                if(!username.getText().toString().equals(" ") && !password.getText().toString().equals(" ") && !confirmPass.getText().toString().equals(" ")){
+                    if(password.getText().toString().equals(confirmPass.getText().toString())) {
                         user.setUsername(username.getText().toString());
                         user.setPassword(password.getText().toString());
                         user.setRole("user");

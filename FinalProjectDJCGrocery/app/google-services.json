@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "572555435165",
+    "firebase_url": "https://djc-grocery-database-default-rtdb.firebaseio.com",
     "project_id": "djc-grocery-database",
     "storage_bucket": "djc-grocery-database.appspot.com"
   },
