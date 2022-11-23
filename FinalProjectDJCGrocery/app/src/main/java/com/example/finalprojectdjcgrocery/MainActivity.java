@@ -30,8 +30,8 @@ public class MainActivity extends AppCompatActivity {
         registerBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //Intent i = new Intent(getApplicationContext(), Register.class);
-                //startActivity(i);
+                Intent i = new Intent(getApplicationContext(), Register.class);
+                startActivity(i);
             }
         });
     }
