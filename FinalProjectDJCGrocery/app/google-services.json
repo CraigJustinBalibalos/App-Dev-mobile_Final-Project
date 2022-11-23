@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "572555435165",
+    "project_id": "djc-grocery-database",
+    "storage_bucket": "djc-grocery-database.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:572555435165:android:e7669b185b2835afbc4874",
+        "android_client_info": {
+          "package_name": "com.example.finalprojectdjcgrocery"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "572555435165-7omajau3rorl4ba9ersco11cobfcrn4q.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAnc7K84WiN5hDGdzjqEwoXvKh3dM-ojE0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "572555435165-7omajau3rorl4ba9ersco11cobfcrn4q.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
