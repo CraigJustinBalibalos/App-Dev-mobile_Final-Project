@@ -7,6 +7,7 @@ import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
@@ -15,10 +16,14 @@ public class MainActivity extends AppCompatActivity {
 
     MediaPlayer mediaPlayer;
 
+    ImageView mute;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        mute = findViewById(R.id.muteIcon);
 
         if(mediaPlayer==null){
             mediaPlayer = MediaPlayer.create(this,R.raw.song);
@@ -37,7 +42,10 @@ public class MainActivity extends AppCompatActivity {
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                mediaPlayer.pause();
+                int position = mediaPlayer.getCurrentPosition();
                 Intent i = new Intent(getApplicationContext(), Login.class);
+                i.putExtra("song", position);
                 startActivity(i);
             }
         });
@@ -45,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
         registerBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                mediaPlayer.pause();
                 Intent i = new Intent(getApplicationContext(), Register.class);
                 startActivity(i);
             }

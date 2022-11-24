@@ -85,6 +85,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:srcCompat="@drawable/mute"/>
+        app:srcCompat="@drawable/mute"
+        android:onClick="stop"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
