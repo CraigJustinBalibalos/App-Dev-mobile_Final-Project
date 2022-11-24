@@ -1,24 +1,15 @@
 package com.example.finalprojectdjcgrocery;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseAuthException;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -34,12 +25,8 @@ public class Login extends AppCompatActivity {
 
     String uName;
     String uPass;
-    String name;
-    String pass;
 
     DatabaseReference ref;
-    ArrayList<String> arrayList = new ArrayList<>();
-    FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,9 +37,6 @@ public class Login extends AppCompatActivity {
         password = findViewById(R.id.inputPassword);
 
         loginBtn = findViewById(R.id.loginBtn2);
-
-        //name = username.getText().toString();
-        //pass = password.getText().toString();
 
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -66,12 +50,15 @@ public class Login extends AppCompatActivity {
                         uPass = snapshot.child("password").getValue().toString().trim();
 
                         if(uName.equals(username.getText().toString().trim()) && uPass.equals(password.getText().toString().trim())){
-                            Toast.makeText(Login.this, "Login successful", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(Login.this, "Login Successful", Toast.LENGTH_SHORT).show();
                             Intent i = new Intent(getApplicationContext(), Categories.class);
                             startActivity(i);
                         }
+                        else if(username.getText().toString().equals("") || password.getText().toString().equals("")){
+                            Toast.makeText(Login.this, "Please Enter Valid Info", Toast.LENGTH_SHORT).show();
+                        }
                         else{
-                            Toast.makeText(Login.this, username.getText().toString(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(Login.this, "Login Failed", Toast.LENGTH_SHORT).show();
                         }
                     }
 
@@ -82,26 +69,5 @@ public class Login extends AppCompatActivity {
                 });
             }
         });
-//            mAuth.signInWithEmailAndPassword(name, pass).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-//                @Override
-//                public void onComplete(@NonNull Task<AuthResult> task) {
-//                    if (task.isSuccessful()) {
-//                        // Sign in success, update UI with the signed-in user's information
-//                        Log.d("UserPass", "signIn:success");
-//                        FirebaseUser user = mAuth.getCurrentUser();
-//                        updateUI(user);
-//                        Intent i = new Intent(getApplicationContext(), Categories.class);
-//                        startActivity(i);
-//                    } else {
-//                        // If sign in fails, display a message to the user.
-//                        Log.w("UserPass", "signIn:failure", task.getException());
-//                        Toast.makeText(getApplicationContext(), "Authentication failed.", Toast.LENGTH_SHORT).show();
-//                        updateUI(null);
-//                    }
-//                }
-//            });
-        }
-
-    private void updateUI(FirebaseUser user) {
     }
 }
