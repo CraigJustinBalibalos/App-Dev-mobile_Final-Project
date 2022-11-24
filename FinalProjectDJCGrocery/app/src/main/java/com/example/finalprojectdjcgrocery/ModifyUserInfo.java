@@ -71,9 +71,9 @@ public class ModifyUserInfo extends AppCompatActivity {
                 updateRef.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        if (snapshot.hasChild("1")) {
-                            uPass = snapshot.child("password").getValue().toString().trim();
-                            uRole = snapshot.child("role").getValue().toString().trim();
+                        uPass = snapshot.child("password").getValue().toString();
+                        uRole = snapshot.child("role").getValue().toString();
+                        //if (snapshot.hasChild("1")) {
                             try {
                                 user.setUsername(username.getText().toString().trim());
                                 user.setPassword(uPass);
@@ -86,9 +86,9 @@ public class ModifyUserInfo extends AppCompatActivity {
                             } catch (NumberFormatException n) {
                                 Toast.makeText(ModifyUserInfo.this, "Data not Updated", Toast.LENGTH_SHORT).show();
                             }
-                        } else {
-                            Toast.makeText(ModifyUserInfo.this, "Unable to Update", Toast.LENGTH_SHORT).show();
-                        }
+//                        } else {
+//                            Toast.makeText(ModifyUserInfo.this, "Unable to Update", Toast.LENGTH_SHORT).show();
+//                        }
                     }
 
                     @Override
@@ -102,11 +102,11 @@ public class ModifyUserInfo extends AppCompatActivity {
         changePass.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DatabaseReference updateRef = FirebaseDatabase.getInstance().getReference().child("User");
+                DatabaseReference updateRef = FirebaseDatabase.getInstance().getReference().child("User").child("1");
                 updateRef.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        if (snapshot.hasChild("1")) {
+//                        if (snapshot.hasChild("1")) {
                             uName = snapshot.child("username").getValue().toString().trim();
                             uPass = snapshot.child("password").getValue().toString().trim();
                             uRole = snapshot.child("role").getValue().toString().trim();
@@ -130,9 +130,9 @@ public class ModifyUserInfo extends AppCompatActivity {
                         }else {
                                 Toast.makeText(ModifyUserInfo.this, "Incorrect old password", Toast.LENGTH_SHORT).show();
                         }
-                        } else {
-                            Toast.makeText(ModifyUserInfo.this, "Unable to Update", Toast.LENGTH_SHORT).show();
-                        }
+//                        } else {
+//                            Toast.makeText(ModifyUserInfo.this, "Unable to Update", Toast.LENGTH_SHORT).show();
+//                        }
                     }
 
                     @Override
