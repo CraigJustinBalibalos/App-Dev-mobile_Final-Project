@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -27,12 +28,28 @@ public class Register extends AppCompatActivity {
     long maxID = 0;
 
     DatabaseReference ref;
+    MediaPlayer mediaPlayer;
     User user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+
+        Intent getSong = getIntent();
+        int position = getSong.getIntExtra("song", 0);
+
+        if(mediaPlayer==null){
+            mediaPlayer = MediaPlayer.create(this,R.raw.song);
+            mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                @Override
+                public void onCompletion(MediaPlayer mediaPlayer) {
+                    mediaPlayer.start();
+                }
+            });
+        }
+        mediaPlayer.seekTo(position);
+        mediaPlayer.start();
 
         user = new User();
 
@@ -62,12 +79,15 @@ public class Register extends AppCompatActivity {
             public void onClick(View view) {
                 if(!username.getText().toString().equals(" ") && !password.getText().toString().equals(" ") && !confirmPass.getText().toString().equals(" ")){
                     if(password.getText().toString().equals(confirmPass.getText().toString())) {
+                        mediaPlayer.pause();
+                        int position = mediaPlayer.getCurrentPosition();
                         user.setUsername(username.getText().toString());
                         user.setPassword(password.getText().toString());
                         user.setRole("user");
                         ref.child(String.valueOf(maxID + 1)).setValue(user);
                         Toast.makeText(getApplicationContext(), "User registered successfully", Toast.LENGTH_SHORT).show();
                         Intent i = new Intent(getApplicationContext(), Login.class);
+                        i.putExtra("song", position);
                         startActivity(i);
                     }
                     else {

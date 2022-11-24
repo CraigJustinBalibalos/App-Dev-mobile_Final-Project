@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -12,11 +13,27 @@ import android.widget.Toast;
 
 public class Categories extends AppCompatActivity {
 
+    MediaPlayer mediaPlayer;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_categories);
 
+        Intent getSong = getIntent();
+        int position = getSong.getIntExtra("song", 0);
+
+        if(mediaPlayer==null){
+            mediaPlayer = MediaPlayer.create(this,R.raw.song);
+            mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                @Override
+                public void onCompletion(MediaPlayer mediaPlayer) {
+                    mediaPlayer.start();
+                }
+            });
+        }
+        mediaPlayer.seekTo(position);
+        mediaPlayer.start();
     }
 
     @Override
@@ -29,25 +46,32 @@ public class Categories extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
+        mediaPlayer.pause();
+        int position = mediaPlayer.getCurrentPosition();
+
         switch(item.getItemId()){
             case R.id.account:
                 Toast.makeText(this, "Account is selected", Toast.LENGTH_SHORT).show();
                 Intent a = new Intent(getApplicationContext(), MyAccount.class);
+                a.putExtra("song", position);
                 startActivity(a);
                 return true;
             case R.id.music:
                 Toast.makeText(this, "Background Music is selected", Toast.LENGTH_SHORT).show();
                 Intent m = new Intent(getApplicationContext(), BackgroundMusic.class);
+                m.putExtra("song", position);
                 startActivity(m);
                 return true;
             case R.id.categories:
                 Toast.makeText(this, "Categories is selected", Toast.LENGTH_SHORT).show();
                 Intent c = new Intent(getApplicationContext(), Categories.class);
+                c.putExtra("song", position);
                 startActivity(c);
                 return true;
             case R.id.logout:
                 Toast.makeText(this, "Categories is selected", Toast.LENGTH_SHORT).show();
                 Intent l = new Intent(getApplicationContext(), MainActivity.class);
+                l.putExtra("song", position);
                 startActivity(l);
             default:
                 return super.onOptionsItemSelected(item);
