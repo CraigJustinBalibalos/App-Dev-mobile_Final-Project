@@ -8,14 +8,21 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.EditText;
 import android.widget.Toast;
 
 public class ModifyUserInfo extends AppCompatActivity {
+
+    EditText username, password, confpass;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_modify_user_info);
+
+        username = findViewById(R.id.newUsername);
+        password = findViewById(R.id.newPassword);
+        confpass = findViewById(R.id.confirmPassword);
     }
 
     @Override
