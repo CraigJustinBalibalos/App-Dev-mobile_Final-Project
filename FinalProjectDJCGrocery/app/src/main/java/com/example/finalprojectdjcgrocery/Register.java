@@ -77,7 +77,7 @@ public class Register extends AppCompatActivity {
         registerBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(!username.getText().toString().equals(" ") && !password.getText().toString().equals(" ") && !confirmPass.getText().toString().equals(" ")){
+                if(!username.getText().toString().equals("") && !password.getText().toString().equals("") && !confirmPass.getText().toString().equals("")){
                     if(password.getText().toString().equals(confirmPass.getText().toString())) {
                         mediaPlayer.pause();
                         int position = mediaPlayer.getCurrentPosition();

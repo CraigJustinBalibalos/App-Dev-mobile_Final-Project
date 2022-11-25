@@ -84,6 +84,10 @@ public class BackgroundMusic extends AppCompatActivity {
         stopPlayer();
     }
 
+    public void play(View view) {
+        playMusic();
+    }
+
     private void stopPlayer() {
         if(mediaPlayer != null){
             mediaPlayer.pause();
