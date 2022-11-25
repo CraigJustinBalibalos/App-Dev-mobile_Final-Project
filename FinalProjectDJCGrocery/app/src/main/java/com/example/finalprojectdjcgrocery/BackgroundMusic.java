@@ -14,7 +14,7 @@ import android.widget.Toast;
 
 public class BackgroundMusic extends AppCompatActivity {
 
-    MediaPlayer mediaPlayer;
+//    MediaPlayer mediaPlayer;
     int position;
 
     @Override
@@ -25,17 +25,17 @@ public class BackgroundMusic extends AppCompatActivity {
         Intent getSong = getIntent();
         int resume = getSong.getIntExtra("song", 0);
 
-        if(mediaPlayer==null){
-            mediaPlayer = MediaPlayer.create(this,R.raw.song);
-            mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-                @Override
-                public void onCompletion(MediaPlayer mediaPlayer) {
-                    mediaPlayer.start();
-                }
-            });
-        }
-        mediaPlayer.seekTo(resume);
-        mediaPlayer.start();
+//        if(mediaPlayer==null){
+//            mediaPlayer = MediaPlayer.create(this,R.raw.song);
+//            mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+//                @Override
+//                public void onCompletion(MediaPlayer mediaPlayer) {
+//                    mediaPlayer.start();
+//                }
+//            });
+//        }
+//        mediaPlayer.seekTo(resume);
+//        mediaPlayer.start();
     }
 
     @Override
@@ -48,32 +48,32 @@ public class BackgroundMusic extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
-        mediaPlayer.pause();
-        position = mediaPlayer.getCurrentPosition();
+//        mediaPlayer.pause();
+//        position = mediaPlayer.getCurrentPosition();
 
         switch(item.getItemId()){
             case R.id.account:
                 Toast.makeText(this, "Account is selected", Toast.LENGTH_SHORT).show();
                 Intent a = new Intent(getApplicationContext(), MyAccount.class);
-                a.putExtra("song", position);
+//                a.putExtra("song", position);
                 startActivity(a);
                 return true;
             case R.id.music:
                 Toast.makeText(this, "Background Music is selected", Toast.LENGTH_SHORT).show();
                 Intent m = new Intent(getApplicationContext(), BackgroundMusic.class);
-                m.putExtra("song", position);
+//                m.putExtra("song", position);
                 startActivity(m);
                 return true;
             case R.id.categories:
                 Toast.makeText(this, "Categories is selected", Toast.LENGTH_SHORT).show();
                 Intent c = new Intent(getApplicationContext(), Categories.class);
-                c.putExtra("song", position);
+//                c.putExtra("song", position);
                 startActivity(c);
                 return true;
             case R.id.logout:
-                Toast.makeText(this, "Categories is selected", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Logged out", Toast.LENGTH_SHORT).show();
                 Intent l = new Intent(getApplicationContext(), MainActivity.class);
-                l.putExtra("song", position);
+//                l.putExtra("song", position);
                 startActivity(l);
             default:
                 return super.onOptionsItemSelected(item);
@@ -81,32 +81,34 @@ public class BackgroundMusic extends AppCompatActivity {
     }
 
     public void stop(View view) {
-        stopPlayer();
+//        stopPlayer();
+        MusicPlayer.stopAudio(this);
     }
 
     public void play(View view) {
-        playMusic();
+//        playMusic();
+        MusicPlayer.playAudio(this);
     }
 
-    private void stopPlayer() {
-        if(mediaPlayer != null){
-            mediaPlayer.pause();
-            position = mediaPlayer.getCurrentPosition();
-            Toast.makeText(this,"MediaPlayer source is released", Toast.LENGTH_SHORT).show();
-        }
-    }
-
-    public void playMusic(){
-        if(mediaPlayer==null){
-            mediaPlayer = MediaPlayer.create(this,R.raw.song);
-            mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-                @Override
-                public void onCompletion(MediaPlayer mediaPlayer) {
-                    mediaPlayer.start();
-                }
-            });
-        }
-        mediaPlayer.seekTo(position);
-        mediaPlayer.start();
-    }
+//    private void stopPlayer() {
+//        if(mediaPlayer != null){
+//            mediaPlayer.pause();
+//            position = mediaPlayer.getCurrentPosition();
+//            Toast.makeText(this,"MediaPlayer source is released", Toast.LENGTH_SHORT).show();
+//        }
+//    }
+//
+//    public void playMusic(){
+//        if(mediaPlayer==null){
+//            mediaPlayer = MediaPlayer.create(this,R.raw.song);
+//            mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+//                @Override
+//                public void onCompletion(MediaPlayer mediaPlayer) {
+//                    mediaPlayer.start();
+//                }
+//            });
+//        }
+//        mediaPlayer.seekTo(position);
+//        mediaPlayer.start();
+//    }
 }

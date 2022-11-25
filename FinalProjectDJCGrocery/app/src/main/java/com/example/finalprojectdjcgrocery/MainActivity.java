@@ -14,7 +14,7 @@ public class MainActivity extends AppCompatActivity {
 
     Button loginBtn, registerBtn;
 
-    MediaPlayer mediaPlayer;
+//    MediaPlayer mediaPlayer;
 
     ImageView mute;
 
@@ -25,16 +25,18 @@ public class MainActivity extends AppCompatActivity {
 
         mute = findViewById(R.id.muteIcon);
 
-        if(mediaPlayer==null){
-            mediaPlayer = MediaPlayer.create(this,R.raw.song);
-            mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-                @Override
-                public void onCompletion(MediaPlayer mediaPlayer) {
-                    mediaPlayer.start();
-                }
-            });
-        }
-        mediaPlayer.start();
+        MusicPlayer.playAudio(this);
+
+//        if(mediaPlayer==null){
+//            mediaPlayer = MediaPlayer.create(this,R.raw.song);
+//            mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+//                @Override
+//                public void onCompletion(MediaPlayer mediaPlayer) {
+//                    mediaPlayer.start();
+//                }
+//            });
+//        }
+//        mediaPlayer.start();
 
         loginBtn = findViewById(R.id.loginBtn);
         registerBtn = findViewById(R.id.registerBtn);
@@ -42,10 +44,10 @@ public class MainActivity extends AppCompatActivity {
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mediaPlayer.pause();
-                int position = mediaPlayer.getCurrentPosition();
+//                mediaPlayer.pause();/
+//                int position = mediaPlayer.getCurrentPosition();
                 Intent i = new Intent(getApplicationContext(), Login.class);
-                i.putExtra("song", position);
+//                i.putExtra("song", position);
                 startActivity(i);
             }
         });
@@ -53,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
         registerBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mediaPlayer.pause();
+//                mediaPlayer.pause();
                 Intent i = new Intent(getApplicationContext(), Register.class);
                 startActivity(i);
             }
@@ -61,14 +63,15 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void stop(View view) {
-        stopPlayer();
+//        stopPlayer();
+        MusicPlayer.stopAudio(this);
     }
-
-    private void stopPlayer() {
-        if(mediaPlayer != null){
-            mediaPlayer.release();
-            mediaPlayer = null;
-            Toast.makeText(this,"MediaPlayer source is released", Toast.LENGTH_SHORT).show();
-        }
-    }
+//
+//    private void stopPlayer() {
+//        if(mediaPlayer != null){
+//            mediaPlayer.release();
+//            mediaPlayer = null;
+//            Toast.makeText(this,"MediaPlayer source is released", Toast.LENGTH_SHORT).show();
+//        }
+//    }
 }

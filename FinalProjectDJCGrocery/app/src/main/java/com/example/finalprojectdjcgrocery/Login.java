@@ -31,27 +31,27 @@ public class Login extends AppCompatActivity {
 
     DatabaseReference ref;
 
-    MediaPlayer mediaPlayer;
+//    MediaPlayer mediaPlayer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        Intent getSong = getIntent();
-        int position = getSong.getIntExtra("song", 0);
+//        Intent getSong = getIntent();
+//        int position = getSong.getIntExtra("song", 0);
 
-        if(mediaPlayer==null){
-            mediaPlayer = MediaPlayer.create(this,R.raw.song);
-            mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-                @Override
-                public void onCompletion(MediaPlayer mediaPlayer) {
-                    mediaPlayer.start();
-                }
-            });
-        }
-        mediaPlayer.seekTo(position);
-        mediaPlayer.start();
+//        if(mediaPlayer==null){
+//            mediaPlayer = MediaPlayer.create(this,R.raw.song);
+//            mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+//                @Override
+//                public void onCompletion(MediaPlayer mediaPlayer) {
+//                    mediaPlayer.start();
+//                }
+//            });
+//        }
+//        mediaPlayer.seekTo(position);
+//        mediaPlayer.start();
 
         username = findViewById(R.id.inputUsername);
         password = findViewById(R.id.inputPassword);
@@ -72,10 +72,10 @@ public class Login extends AppCompatActivity {
 
                         if(uName.equals(username.getText().toString().trim()) && uPass.equals(password.getText().toString().trim())){
                             Toast.makeText(Login.this, "Login Successful", Toast.LENGTH_SHORT).show();
-                            mediaPlayer.pause();
-                            int position = mediaPlayer.getCurrentPosition();
+//                            mediaPlayer.pause();
+//                            int position = mediaPlayer.getCurrentPosition();
                             Intent i = new Intent(getApplicationContext(), Categories.class);
-                            i.putExtra("song", position);
+//                            i.putExtra("song", position);
                             startActivity(i);
                         }
                         else if(username.getText().toString().equals("") || password.getText().toString().equals("")){
@@ -96,14 +96,15 @@ public class Login extends AppCompatActivity {
     }
 
     public void stop(View view) {
-        stopPlayer();
+//        stopPlayer();
+        MusicPlayer.stopAudio(this);
     }
 
-    private void stopPlayer() {
-        if(mediaPlayer != null){
-            mediaPlayer.release();
-            mediaPlayer = null;
-            Toast.makeText(this,"MediaPlayer source is released", Toast.LENGTH_SHORT).show();
-        }
-    }
+//    private void stopPlayer() {
+//        if(mediaPlayer != null){
+//            mediaPlayer.release();
+//            mediaPlayer = null;
+//            Toast.makeText(this,"MediaPlayer source is released", Toast.LENGTH_SHORT).show();
+//        }
+//    }
 }
