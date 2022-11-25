@@ -63,5 +63,7 @@
         android:layout_marginBottom="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/mute" />
+        app:srcCompat="@drawable/mute"
+        android:onClick="stop"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
