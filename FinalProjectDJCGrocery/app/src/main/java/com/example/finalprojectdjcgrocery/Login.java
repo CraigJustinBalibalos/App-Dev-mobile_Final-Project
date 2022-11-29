@@ -62,28 +62,33 @@ public class Login extends AppCompatActivity {
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ref = FirebaseDatabase.getInstance().getReference().child("User").child("1");
-                //ref = FirebaseDatabase.getInstance().getReference().child("User").child(name);
+                ref = FirebaseDatabase.getInstance().getReference().child("User");
+//                ref = FirebaseDatabase.getInstance().getReference().child("User").child("1");
+//                ref = FirebaseDatabase.getInstance().getReference().child("User").child(name);
                 ref.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        uName = snapshot.child("username").getValue().toString().trim();
-                        uPass = snapshot.child("password").getValue().toString().trim();
-
-                        if(uName.equals(username.getText().toString().trim()) && uPass.equals(password.getText().toString().trim())){
-                            Toast.makeText(Login.this, "Login Successful", Toast.LENGTH_SHORT).show();
+                        for(DataSnapshot dataSnapshot: snapshot.getChildren()) {
+//                            uName = snapshot.child("username").getValue().toString().trim();
+//                            uPass = snapshot.child("password").getValue().toString().trim();
+                            if(username.getText().toString().equals(dataSnapshot.child("username").getValue().toString().trim()) &&
+                                    password.getText().toString().equals(dataSnapshot.child("password").getValue().toString().trim())) {
+                                uName = dataSnapshot.child("username").getValue().toString().trim();
+                                uPass = dataSnapshot.child("password").getValue().toString().trim();
+                            }
+                        }
+                            if (uName.equals(username.getText().toString().trim()) && uPass.equals(password.getText().toString().trim())) {
+                                Toast.makeText(Login.this, "Login Successful", Toast.LENGTH_SHORT).show();
 //                            mediaPlayer.pause();
 //                            int position = mediaPlayer.getCurrentPosition();
-                            Intent i = new Intent(getApplicationContext(), Categories.class);
+                                Intent i = new Intent(getApplicationContext(), Categories.class);
 //                            i.putExtra("song", position);
-                            startActivity(i);
-                        }
-                        else if(username.getText().toString().equals("") || password.getText().toString().equals("")){
-                            Toast.makeText(Login.this, "Please Enter Valid Info", Toast.LENGTH_SHORT).show();
-                        }
-                        else{
-                            Toast.makeText(Login.this, "Login Failed", Toast.LENGTH_SHORT).show();
-                        }
+                                startActivity(i);
+                            } else if (username.getText().toString().equals("") || password.getText().toString().equals("")) {
+                                Toast.makeText(Login.this, "Please Enter Valid Info", Toast.LENGTH_SHORT).show();
+                            } else {
+                                Toast.makeText(Login.this, "Login Failed", Toast.LENGTH_SHORT).show();
+                            }
                     }
 
                     @Override
