@@ -1,53 +1,54 @@
 package com.example.finalprojectdjcgrocery;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
+import java.util.ArrayList;
 
 public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.CategoriesViewHolder> {
 
-    private DatabaseReference ref;
-    private LayoutInflater myInflater;
+    Context context;
+    ArrayList<Category> catist;
 
-    public CategoriesAdapter(DatabaseReference ref, LayoutInflater myInflater) {
-        this.ref = ref;
-        this.myInflater = myInflater;
+    public CategoriesAdapter(Context context, ArrayList<Category> list) {
+        this.context = context;
+        this.catist = catist;
     }
 
     @NonNull
     @Override
     public CategoriesViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = myInflater.inflate(R.layout.row_child_categories, parent, false);
-        return new CategoriesViewHolder(view);
+        View v = LayoutInflater.from(context).inflate(R.layout.row_child_categories, parent, false);
+        return new CategoriesViewHolder(v);
     }
 
     @Override
     public void onBindViewHolder(@NonNull CategoriesViewHolder holder, int position) {
-//        holder.name.setText();
+        Category category = catist.get(position);
+        holder.catName.setText(category.getName());
+//        holder.catImg.set
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return catist.size();
     }
 
-    public class CategoriesViewHolder extends RecyclerView.ViewHolder{
+    public static class CategoriesViewHolder extends RecyclerView.ViewHolder {
+        TextView catName;
+//        ImageView catImg;
 
-        ImageView img;
-        TextView name;
         public CategoriesViewHolder(@NonNull View itemView) {
             super(itemView);
+            catName = itemView.findViewById(R.id.textView2);
+//            catImg = itemView.findViewById(R.id.imageView3);
 
-            img = itemView.findViewById(R.id.imageView2);
-            name = itemView.findViewById(R.id.textView2);
         }
     }
 }
