@@ -9,16 +9,17 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+
 import java.util.ArrayList;
 
-public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.CategoriesViewHolder> {
+public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.CategoriesViewHolder>{
 
     Context context;
-    ArrayList<Category> catist;
+    ArrayList<String> catList;
 
-    public CategoriesAdapter(Context context, ArrayList<Category> list) {
+    public CategoriesAdapter(Context context, ArrayList<String> catList) {
         this.context = context;
-        this.catist = catist;
+        this.catList = catList;
     }
 
     @NonNull
@@ -30,14 +31,15 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.Ca
 
     @Override
     public void onBindViewHolder(@NonNull CategoriesViewHolder holder, int position) {
-        Category category = catist.get(position);
-        holder.catName.setText(category.getName());
+        String category = catList.get(position);
+        holder.catName.setText(category);
+//        holder.catName.setText(category.getName());
 //        holder.catImg.set
     }
 
     @Override
     public int getItemCount() {
-        return catist.size();
+        return catList.size();
     }
 
     public static class CategoriesViewHolder extends RecyclerView.ViewHolder {

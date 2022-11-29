@@ -24,9 +24,10 @@ public class Categories extends AppCompatActivity {
 
 //    MediaPlayer mediaPlayer
     RecyclerView recyclerView;
-    ArrayList<Category> catList;
+    ArrayList<String> catList;
     DatabaseReference ref;
     CategoriesAdapter adapter;
+    int id = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,17 +36,21 @@ public class Categories extends AppCompatActivity {
 
         recyclerView = findViewById(R.id.recyclerViewCat);
         ref = FirebaseDatabase.getInstance().getReference().child("Category");
-        catList =new ArrayList<>();
+        catList = new ArrayList<>();
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         adapter = new CategoriesAdapter(this, catList);
         recyclerView.setAdapter(adapter);
-
         ref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for(DataSnapshot dataSnapshot: snapshot.getChildren()){
-                    Category category = dataSnapshot.getValue(Category.class);
-                    catList.add(category);
+//                    Category category = dataSnapshot.getValue(Category.class);
+//                    catList.add(category);
+//                    for (id = 1; id > catList.size(); id++){
+//                        ref = FirebaseDatabase.getInstance().getReference().child("Category").child(id + "");
+                        String category = dataSnapshot.child("category_name").getValue().toString().trim();
+                        catList.add(category);
+//                    }
                 }
                 adapter.notifyDataSetChanged();
             }
@@ -55,7 +60,6 @@ public class Categories extends AppCompatActivity {
 
             }
         });
-
 //        Intent getSong = getIntent();
 //        int position = getSong.getIntExtra("song", 0);
 //
@@ -70,6 +74,8 @@ public class Categories extends AppCompatActivity {
 //        }
 //        mediaPlayer.seekTo(position);
 //        mediaPlayer.start();
+
+
     }
 
     @Override
