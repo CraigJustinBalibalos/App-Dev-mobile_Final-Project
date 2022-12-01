@@ -25,9 +25,11 @@ public class Login extends AppCompatActivity {
     EditText username, password;
     Button loginBtn;
 
-    String uName ,uPass;
+    String uName ,uPass, uRole;
 
     ImageView mute;
+
+    User currentUser;
 
     DatabaseReference ref;
 
@@ -40,6 +42,8 @@ public class Login extends AppCompatActivity {
         username = findViewById(R.id.inputUsername);
         password = findViewById(R.id.inputPassword);
         mute = findViewById(R.id.muteIcon);
+
+        currentUser = new User();
 
         loginBtn = findViewById(R.id.loginBtn2);
 
@@ -55,9 +59,14 @@ public class Login extends AppCompatActivity {
                                     password.getText().toString().equals(dataSnapshot.child("password").getValue().toString().trim())) {
                                 uName = dataSnapshot.child("username").getValue().toString().trim();
                                 uPass = dataSnapshot.child("password").getValue().toString().trim();
+                                uRole = dataSnapshot.child("role").getValue().toString().trim();
+
                             }
                         }
                             if (uName.equals(username.getText().toString().trim()) && uPass.equals(password.getText().toString().trim())) {
+                                currentUser.setUsername(uName);
+                                currentUser.setPassword(uPass);
+                                currentUser.setRole(uRole);
                                 Toast.makeText(Login.this, "Login Successful", Toast.LENGTH_SHORT).show();
                                 Intent i = new Intent(getApplicationContext(), Categories.class);
                                 i.putExtra("USERNAME", uName);
@@ -79,7 +88,6 @@ public class Login extends AppCompatActivity {
     }
 
     public void stop(View view) {
-//        stopPlayer();
         MusicPlayer.stopAudio(this);
     }
 

@@ -21,6 +21,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
+
 public class ModifyUserInfo extends AppCompatActivity {
 
     EditText username, oldPass, password, confpass;
@@ -30,33 +32,16 @@ public class ModifyUserInfo extends AppCompatActivity {
 
     DatabaseReference ref;
     User user;
-
-    MediaPlayer mediaPlayer;
-    int position;
+    ArrayList<String> usernameList = new ArrayList<>();
+    ArrayList<String> passList = new ArrayList<>();
+    ArrayList<String> roleList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_modify_user_info);
 
-//        Intent getName = getIntent();
         confName = getIntent().getStringExtra("USERNAME");
-
-
-        Intent getSong = getIntent();
-        int resume = getSong.getIntExtra("song", 0);
-
-        if(mediaPlayer==null){
-            mediaPlayer = MediaPlayer.create(this,R.raw.song);
-            mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-                @Override
-                public void onCompletion(MediaPlayer mediaPlayer) {
-                    mediaPlayer.start();
-                }
-            });
-        }
-        mediaPlayer.seekTo(resume);
-        mediaPlayer.start();
 
         username = findViewById(R.id.newUsername);
         oldPass = findViewById(R.id.oldPassword);
@@ -66,6 +51,8 @@ public class ModifyUserInfo extends AppCompatActivity {
         changeName = findViewById(R.id.confirmUsernameBtn);
         changePass = findViewById(R.id.confirmPasswordBtn);
         backBtn = findViewById(R.id.button6);
+
+        username.setText(confName);
 
         user = new User();
 
@@ -78,32 +65,28 @@ public class ModifyUserInfo extends AppCompatActivity {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         for(DataSnapshot dataSnapshot: snapshot.getChildren()) {
-                            System.out.println("test");
-//                            username.getText().toString().equals(dataSnapshot.child("username").getValue().toString().trim())
-                            if(!dataSnapshot.child("username").getValue().equals(confName)) {
-                                Toast.makeText(ModifyUserInfo.this, "NOT YOU", Toast.LENGTH_SHORT).show();
-                                System.out.println("forloop");
-                                //uName = dataSnapshot.child("username").getValue().toString().trim();
-//                                uPass = dataSnapshot.child("password").getValue().toString().trim();
-//                                uRole = dataSnapshot.child("role").getValue().toString().trim();
-                            }else{
-                                Toast.makeText(ModifyUserInfo.this, "ITs YOU", Toast.LENGTH_SHORT).show();
-                            }
+                            uName = dataSnapshot.child("username").getValue().toString().trim();
+                            uPass = dataSnapshot.child("password").getValue().toString().trim();
+                            uRole = dataSnapshot.child("role").getValue().toString().trim();
+
+                            usernameList.add(uName);
+                            passList.add(uPass);
+                            roleList.add(uRole);
                         }
-//                        ref = FirebaseDatabase.getInstance().getReference().child("User").child("username");
-//                        uPass = snapshot.child("password").getValue().toString().trim();
-//                        uRole = snapshot.child("role").getValue().toString().trim();
-//                        try {
-//                            user.setUsername(username.getText().toString().trim());
-//                            user.setPassword(uPass);
-//                            user.setRole(uRole);
-//
-//                            ref.setValue(user);
-//
-//                            Toast.makeText(ModifyUserInfo.this, "Data Updated", Toast.LENGTH_SHORT).show();
-//                        } catch (NumberFormatException n) {
-//                            Toast.makeText(ModifyUserInfo.this, "Data not Updated", Toast.LENGTH_SHORT).show();
-//                        }
+                        for (int i = 0; i < usernameList.size(); i++) {
+                            System.out.println(confName);
+                            if(snapshot.child("username").getValue().equals(confName)){
+                                user.setUsername(username.getText().toString().trim());
+                                uPass = snapshot.child("password").getValue().toString().trim();
+                                uRole = snapshot.child("role").getValue().toString().trim();
+                                user.setPassword(uPass);
+                                user.setRole(uRole);
+
+                                ref.child(i + "").setValue(user);
+                                Toast.makeText(ModifyUserInfo.this, "SAVED", Toast.LENGTH_SHORT).show();
+                            }else Toast.makeText(ModifyUserInfo.this, "NOT SAVED", Toast.LENGTH_SHORT).show();
+                        }
+
                     }
 
                     @Override
@@ -158,10 +141,8 @@ public class ModifyUserInfo extends AppCompatActivity {
         backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mediaPlayer.pause();
-                position = mediaPlayer.getCurrentPosition();
                 Intent i = new Intent(getApplicationContext(), MyAccount.class);
-                i.putExtra("song", position);
+                i.putExtra("USERNAME", confName);
                 startActivity(i);
             }
         });
