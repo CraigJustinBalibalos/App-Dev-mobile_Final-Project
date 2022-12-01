@@ -22,17 +22,19 @@ import java.util.ArrayList;
 
 public class Categories extends AppCompatActivity {
 
-//    MediaPlayer mediaPlayer
     RecyclerView recyclerView;
     ArrayList<String> catList;
     DatabaseReference ref;
     CategoriesAdapter adapter;
-    int id = 1;
+    String uName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_categories);
+
+        Intent getName = getIntent();
+        uName = getName.getStringExtra("USERNAME");
 
         recyclerView = findViewById(R.id.recyclerViewCat);
         ref = FirebaseDatabase.getInstance().getReference().child("Category");
@@ -44,13 +46,8 @@ public class Categories extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for(DataSnapshot dataSnapshot: snapshot.getChildren()){
-//                    Category category = dataSnapshot.getValue(Category.class);
-//                    catList.add(category);
-//                    for (id = 1; id > catList.size(); id++){
-//                        ref = FirebaseDatabase.getInstance().getReference().child("Category").child(id + "");
                         String category = dataSnapshot.child("category_name").getValue().toString().trim();
                         catList.add(category);
-//                    }
                 }
                 adapter.notifyDataSetChanged();
             }
@@ -60,21 +57,6 @@ public class Categories extends AppCompatActivity {
 
             }
         });
-//        Intent getSong = getIntent();
-//        int position = getSong.getIntExtra("song", 0);
-//
-//        if(mediaPlayer==null){
-//            mediaPlayer = MediaPlayer.create(this,R.raw.song);
-//            mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-//                @Override
-//                public void onCompletion(MediaPlayer mediaPlayer) {
-//                    mediaPlayer.start();
-//                }
-//            });
-//        }
-//        mediaPlayer.seekTo(position);
-//        mediaPlayer.start();
-
 
     }
 
@@ -88,32 +70,28 @@ public class Categories extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
-//        mediaPlayer.pause();
-//        int position = mediaPlayer.getCurrentPosition();
-
         switch(item.getItemId()){
             case R.id.account:
                 Toast.makeText(this, "Account is selected", Toast.LENGTH_SHORT).show();
                 Intent a = new Intent(getApplicationContext(), MyAccount.class);
-//                a.putExtra("song", position);
+                a.putExtra("USERNAME", uName);
                 startActivity(a);
                 return true;
             case R.id.music:
                 Toast.makeText(this, "Background Music is selected", Toast.LENGTH_SHORT).show();
                 Intent m = new Intent(getApplicationContext(), BackgroundMusic.class);
-//                m.putExtra("song", position);
+                m.putExtra("USERNAME", uName);
                 startActivity(m);
                 return true;
             case R.id.categories:
                 Toast.makeText(this, "Categories is selected", Toast.LENGTH_SHORT).show();
                 Intent c = new Intent(getApplicationContext(), Categories.class);
-//                c.putExtra("song", position);
+                c.putExtra("USERNAME", uName);
                 startActivity(c);
                 return true;
             case R.id.logout:
-                Toast.makeText(this, "Categories is selected", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Logout successful", Toast.LENGTH_SHORT).show();
                 Intent l = new Intent(getApplicationContext(), MainActivity.class);
-//                l.putExtra("song", position);
                 startActivity(l);
             default:
                 return super.onOptionsItemSelected(item);

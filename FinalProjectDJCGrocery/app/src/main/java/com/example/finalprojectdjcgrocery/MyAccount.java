@@ -11,6 +11,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.database.DatabaseReference;
@@ -20,17 +21,25 @@ import com.google.firebase.database.ValueEventListener;
 public class MyAccount extends AppCompatActivity {
 
     Button next;
+    TextView nameTV;
 
     MediaPlayer mediaPlayer;
-
     DatabaseReference ref;
 
+    String uName;
     int position;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_account);
+
+        Intent getName = getIntent();
+        uName = getName.getStringExtra("USERNAME");
+
+        nameTV = findViewById(R.id.usernameTextView);
+        nameTV.setText("Username: " + uName);
+
 
         Intent getSong = getIntent();
         int resume = getSong.getIntExtra("song", 0);
@@ -71,32 +80,28 @@ public class MyAccount extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
-        mediaPlayer.pause();
-        position = mediaPlayer.getCurrentPosition();
-
         switch(item.getItemId()){
             case R.id.account:
                 Toast.makeText(this, "Account is selected", Toast.LENGTH_SHORT).show();
                 Intent a = new Intent(getApplicationContext(), MyAccount.class);
-                a.putExtra("song", position);
+                a.putExtra("USERNAME", uName);
                 startActivity(a);
                 return true;
             case R.id.music:
                 Toast.makeText(this, "Background Music is selected", Toast.LENGTH_SHORT).show();
                 Intent m = new Intent(getApplicationContext(), BackgroundMusic.class);
-                m.putExtra("song", position);
+                m.putExtra("USERNAME", uName);
                 startActivity(m);
                 return true;
             case R.id.categories:
                 Toast.makeText(this, "Categories is selected", Toast.LENGTH_SHORT).show();
                 Intent c = new Intent(getApplicationContext(), Categories.class);
-                c.putExtra("song", position);
+                c.putExtra("USERNAME", uName);
                 startActivity(c);
                 return true;
             case R.id.logout:
-                Toast.makeText(this, "Categories is selected", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Logout successful", Toast.LENGTH_SHORT).show();
                 Intent l = new Intent(getApplicationContext(), MainActivity.class);
-                l.putExtra("song", position);
                 startActivity(l);
             default:
                 return super.onOptionsItemSelected(item);
