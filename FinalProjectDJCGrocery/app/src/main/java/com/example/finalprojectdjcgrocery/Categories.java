@@ -24,6 +24,7 @@ public class Categories extends AppCompatActivity {
 
     RecyclerView recyclerView;
     ArrayList<String> catList;
+    ArrayList<String> imgList;
     DatabaseReference ref;
     CategoriesAdapter adapter;
     String uName;
@@ -36,25 +37,32 @@ public class Categories extends AppCompatActivity {
         Intent getName = getIntent();
         uName = getName.getStringExtra("USERNAME");
 
-        recyclerView = findViewById(R.id.recyclerViewCat);
-        ref = FirebaseDatabase.getInstance().getReference().child("Category");
-        catList = new ArrayList<>();
+        recyclerView = (RecyclerView) findViewById(R.id.recyclerViewCat);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new CategoriesAdapter(this, catList);
-        recyclerView.setAdapter(adapter);
+
+        catList = new ArrayList<String>();
+        imgList = new ArrayList<String>();
+
+        ref = FirebaseDatabase.getInstance().getReference().child("Category");
         ref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for(DataSnapshot dataSnapshot: snapshot.getChildren()){
-                        String category = dataSnapshot.child("category_name").getValue().toString().trim();
-                        catList.add(category);
+//                        Category cat = dataSnapshot.getValue(Category.class);
+//                        catList.add(cat);
+                    String categoryName = dataSnapshot.child("category_name").getValue().toString().trim();
+                    catList.add(categoryName);
+                    String categoryImg = dataSnapshot.child("category_img").getValue().toString().trim();
+                    imgList.add(categoryImg);
                 }
-                adapter.notifyDataSetChanged();
+                //adapter.notifyDataSetChanged();
+                adapter = new CategoriesAdapter(Categories.this, catList, imgList);
+                recyclerView.setAdapter(adapter);
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
+                Toast.makeText(Categories.this, "Unable to load categories", Toast.LENGTH_SHORT).show();
             }
         });
 

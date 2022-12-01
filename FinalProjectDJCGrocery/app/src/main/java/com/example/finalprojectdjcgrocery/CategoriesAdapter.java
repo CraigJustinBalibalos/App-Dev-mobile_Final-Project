@@ -4,11 +4,15 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+
+import com.bumptech.glide.Glide;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -16,10 +20,12 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.Ca
 
     Context context;
     ArrayList<String> catList;
+    ArrayList<String> imgList;
 
-    public CategoriesAdapter(Context context, ArrayList<String> catList) {
+    public CategoriesAdapter(Context context, ArrayList<String> catList, ArrayList<String> imgList) {
         this.context = context;
         this.catList = catList;
+        this.imgList = imgList;
     }
 
     @NonNull
@@ -31,10 +37,13 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.Ca
 
     @Override
     public void onBindViewHolder(@NonNull CategoriesViewHolder holder, int position) {
+//        holder.catName.setText(catList.get(position).getName());
         String category = catList.get(position);
         holder.catName.setText(category);
-//        holder.catName.setText(category.getName());
-//        holder.catImg.set
+        Glide.with(context)
+                .asBitmap()
+                .load(imgList.get(position))
+                .into(holder.catImg);
     }
 
     @Override
@@ -44,13 +53,12 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.Ca
 
     public static class CategoriesViewHolder extends RecyclerView.ViewHolder {
         TextView catName;
-//        ImageView catImg;
+        ImageView catImg;
 
         public CategoriesViewHolder(@NonNull View itemView) {
             super(itemView);
-            catName = itemView.findViewById(R.id.textView2);
-//            catImg = itemView.findViewById(R.id.imageView3);
-
+            catName = (TextView) itemView.findViewById(R.id.categoryName);
+            catImg = (ImageView) itemView.findViewById(R.id.categoryImg);
         }
     }
 }
