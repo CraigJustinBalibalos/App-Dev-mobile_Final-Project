@@ -37,7 +37,6 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.Ca
 
     @Override
     public void onBindViewHolder(@NonNull CategoriesViewHolder holder, int position) {
-//        holder.catName.setText(catList.get(position).getName());
         String category = catList.get(position);
         holder.catName.setText(category);
         Glide.with(context)

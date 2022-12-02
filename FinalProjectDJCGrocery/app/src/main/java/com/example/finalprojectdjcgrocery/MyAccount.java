@@ -23,48 +23,36 @@ public class MyAccount extends AppCompatActivity {
     Button next;
     TextView nameTV;
 
-    MediaPlayer mediaPlayer;
     DatabaseReference ref;
 
+//    Login login;
+
     String uName;
-    int position;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_account);
 
+//        String user = login.currentUser.getUsername();
+//
+//        String user = login.uName;
+
         Intent getName = getIntent();
         uName = getName.getStringExtra("USERNAME");
+//
+//        uName = user;
 
         nameTV = findViewById(R.id.usernameTextView);
         nameTV.setText("Username: " + uName);
-
-
-        Intent getSong = getIntent();
-        int resume = getSong.getIntExtra("song", 0);
-
-        if(mediaPlayer==null){
-            mediaPlayer = MediaPlayer.create(this,R.raw.song);
-            mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-                @Override
-                public void onCompletion(MediaPlayer mediaPlayer) {
-                    mediaPlayer.start();
-                }
-            });
-        }
-        mediaPlayer.seekTo(resume);
-        mediaPlayer.start();
 
         next = findViewById(R.id.nextBtn);
 
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mediaPlayer.pause();
-                int position = mediaPlayer.getCurrentPosition();
                 Intent n = new Intent(getApplicationContext(), ModifyUserInfo.class);
-                n.putExtra("song", position);
+                n.putExtra("USERNAME", uName);
                 startActivity(n);
             }
         });
