@@ -1,4 +1,0 @@
-Question for Sakku:
-
-1. How to fetch from a retrofit to a recycler view?
-2. How to pass data from an activity to a fragment and vice-versa
