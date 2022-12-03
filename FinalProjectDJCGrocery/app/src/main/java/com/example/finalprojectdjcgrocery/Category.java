@@ -5,9 +5,16 @@ public class Category {
     String name;
     String img;
 
+    public Category() {
+    }
+
     public Category(String name, String img) {
         this.name = name;
         this.img = img;
+    }
+
+    public Category(String name) {
+        this.name = name;
     }
 
     public String getName() {

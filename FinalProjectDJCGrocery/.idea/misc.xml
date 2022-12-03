@@ -3,6 +3,30 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/14388/Desktop/App Dev (Mobile)/AppDev_FinalProject/FinalProjectDJCGrocery/app/src/main/res/layout/acitivity_admin_add_pruduct.xml" value="0.3223958333333333" />
+        <entry key="..\:/Users/14388/Desktop/App Dev (Mobile)/AppDev_FinalProject/FinalProjectDJCGrocery/app/src/main/res/layout/activity_admin_add_category.xml" value="0.32135416666666666" />
+        <entry key="..\:/Users/14388/Desktop/App Dev (Mobile)/AppDev_FinalProject/FinalProjectDJCGrocery/app/src/main/res/layout/activity_admin_add_product.xml" value="1.3590308370044053" />
+        <entry key="..\:/Users/14388/Desktop/App Dev (Mobile)/AppDev_FinalProject/FinalProjectDJCGrocery/app/src/main/res/layout/activity_admin_add_products.xml" value="0.3223958333333333" />
+        <entry key="..\:/Users/14388/Desktop/App Dev (Mobile)/AppDev_FinalProject/FinalProjectDJCGrocery/app/src/main/res/layout/activity_admin_home_page.xml" value="0.3223958333333333" />
+        <entry key="..\:/Users/14388/Desktop/App Dev (Mobile)/AppDev_FinalProject/FinalProjectDJCGrocery/app/src/main/res/layout/activity_admin_view_orders.xml" value="0.32135416666666666" />
+        <entry key="..\:/Users/14388/Desktop/App Dev (Mobile)/AppDev_FinalProject/FinalProjectDJCGrocery/app/src/main/res/layout/activity_background_music.xml" value="0.3223958333333333" />
+        <entry key="..\:/Users/14388/Desktop/App Dev (Mobile)/AppDev_FinalProject/FinalProjectDJCGrocery/app/src/main/res/layout/activity_categories.xml" value="0.3223958333333333" />
+        <entry key="..\:/Users/14388/Desktop/App Dev (Mobile)/AppDev_FinalProject/FinalProjectDJCGrocery/app/src/main/res/layout/activity_checkout.xml" value="0.3223958333333333" />
+        <entry key="..\:/Users/14388/Desktop/App Dev (Mobile)/AppDev_FinalProject/FinalProjectDJCGrocery/app/src/main/res/layout/activity_delivery.xml" value="0.3223958333333333" />
+        <entry key="..\:/Users/14388/Desktop/App Dev (Mobile)/AppDev_FinalProject/FinalProjectDJCGrocery/app/src/main/res/layout/activity_login.xml" value="0.3223958333333333" />
+        <entry key="..\:/Users/14388/Desktop/App Dev (Mobile)/AppDev_FinalProject/FinalProjectDJCGrocery/app/src/main/res/layout/activity_main.xml" value="0.3223958333333333" />
+        <entry key="..\:/Users/14388/Desktop/App Dev (Mobile)/AppDev_FinalProject/FinalProjectDJCGrocery/app/src/main/res/layout/activity_modify_user_info.xml" value="0.3223958333333333" />
+        <entry key="..\:/Users/14388/Desktop/App Dev (Mobile)/AppDev_FinalProject/FinalProjectDJCGrocery/app/src/main/res/layout/activity_order_confirmation.xml" value="0.3223958333333333" />
+        <entry key="..\:/Users/14388/Desktop/App Dev (Mobile)/AppDev_FinalProject/FinalProjectDJCGrocery/app/src/main/res/layout/activity_products.xml" value="0.3223958333333333" />
+        <entry key="..\:/Users/14388/Desktop/App Dev (Mobile)/AppDev_FinalProject/FinalProjectDJCGrocery/app/src/main/res/layout/activity_register.xml" value="0.3223958333333333" />
+        <entry key="..\:/Users/14388/Desktop/App Dev (Mobile)/AppDev_FinalProject/FinalProjectDJCGrocery/app/src/main/res/layout/admin_add_pruduct.xml" value="0.3223958333333333" />
+        <entry key="..\:/Users/14388/Desktop/App Dev (Mobile)/AppDev_FinalProject/FinalProjectDJCGrocery/app/src/main/res/layout/content_admin_add_product.xml" value="0.3223958333333333" />
+        <entry key="..\:/Users/14388/Desktop/App Dev (Mobile)/AppDev_FinalProject/FinalProjectDJCGrocery/app/src/main/res/layout/fragment_cart.xml" value="0.3223958333333333" />
+        <entry key="..\:/Users/14388/Desktop/App Dev (Mobile)/AppDev_FinalProject/FinalProjectDJCGrocery/app/src/main/res/layout/row_child_admin_view_orders.xml" value="0.32135416666666666" />
+        <entry key="..\:/Users/14388/Desktop/App Dev (Mobile)/AppDev_FinalProject/FinalProjectDJCGrocery/app/src/main/res/layout/row_child_cart.xml" value="0.3223958333333333" />
+        <entry key="..\:/Users/14388/Desktop/App Dev (Mobile)/AppDev_FinalProject/FinalProjectDJCGrocery/app/src/main/res/layout/row_child_categories.xml" value="0.3223958333333333" />
+        <entry key="..\:/Users/14388/Desktop/App Dev (Mobile)/AppDev_FinalProject/FinalProjectDJCGrocery/app/src/main/res/layout/row_child_products.xml" value="0.3223958333333333" />
+        <entry key="..\:/Users/14388/Desktop/App Dev (Mobile)/AppDev_FinalProject/FinalProjectDJCGrocery/app/src/main/res/layout/row_child_user_view_order.xml" value="0.32135416666666666" />
         <entry key="..\:/Users/14388/Desktop/App Dev (Mobile)/Final Project/FinalProjectDJCGrocery/app/src/main/res/layout/activity_background_music.xml" value="0.3223958333333333" />
         <entry key="..\:/Users/14388/Desktop/App Dev (Mobile)/Final Project/FinalProjectDJCGrocery/app/src/main/res/layout/activity_categories.xml" value="0.3223958333333333" />
         <entry key="..\:/Users/14388/Desktop/App Dev (Mobile)/Final Project/FinalProjectDJCGrocery/app/src/main/res/layout/activity_checkout.xml" value="0.3223958333333333" />
@@ -30,7 +54,14 @@
         <entry key="..\:/Users/2042827/Downloads/AppDev_FinalProject/FinalProjectDJCGrocery/app/src/main/res/layout/activity_register.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/2042827/Downloads/AppDev_FinalProject/FinalProjectDJCGrocery/app/src/main/res/layout/row_child_categories.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/2042827/Downloads/AppDev_FinalProject/FinalProjectDJCGrocery/app/src/main/res/menu/menu.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/2069192/Downloads/App-Dev-mobile_Final-Project/FinalProjectDJCGrocery/app/src/main/res/layout/activity_admin_add_category.xml" value="0.33" />
+        <entry key="..\:/Users/2069192/Downloads/App-Dev-mobile_Final-Project/FinalProjectDJCGrocery/app/src/main/res/layout/activity_categories.xml" value="0.17135416666666667" />
         <entry key="..\:/Users/2069192/Downloads/App-Dev-mobile_Final-Project/FinalProjectDJCGrocery/app/src/main/res/layout/activity_login.xml" value="0.33" />
+        <entry key="..\:/Users/2069192/Downloads/App-Dev-mobile_Final-Project/FinalProjectDJCGrocery/app/src/main/res/layout/activity_my_account.xml" value="0.33" />
+        <entry key="..\:/Users/2069192/Downloads/App-Dev-mobile_Final-Project/FinalProjectDJCGrocery/app/src/main/res/layout/activity_products.xml" value="0.22" />
+        <entry key="..\:/Users/2069192/Downloads/App-Dev-mobile_Final-Project/FinalProjectDJCGrocery/app/src/main/res/layout/row_child_categories.xml" value="0.33" />
+        <entry key="..\:/Users/2069192/Downloads/App-Dev-mobile_Final-Project/FinalProjectDJCGrocery/app/src/main/res/layout/row_child_products.xml" value="0.3416666666666667" />
+        <entry key="..\:/Users/2069192/Downloads/App-Dev-mobile_Final-Project/FinalProjectDJCGrocery/app/src/main/res/layout/row_child_user_view_order.xml" value="0.3364102564102564" />
         <entry key="..\:/Users/CJ/Documents/Courses/Computer_Science(4th_Semester)/App. Dev. (Mobile)/Team Project/FinalProjectDJCGrocery/app/src/main/res/layout/activity_background_music.xml" value="0.3415384615384615" />
         <entry key="..\:/Users/CJ/Documents/Courses/Computer_Science(4th_Semester)/App. Dev. (Mobile)/Team Project/FinalProjectDJCGrocery/app/src/main/res/layout/activity_categories.xml" value="0.3415384615384615" />
         <entry key="..\:/Users/CJ/Documents/Courses/Computer_Science(4th_Semester)/App. Dev. (Mobile)/Team Project/FinalProjectDJCGrocery/app/src/main/res/layout/activity_checkout.xml" value="0.3415384615384615" />
@@ -43,6 +74,8 @@
         <entry key="..\:/Users/CJ/Documents/Courses/Computer_Science(4th_Semester)/App. Dev. (Mobile)/Team Project/FinalProjectDJCGrocery/app/src/main/res/layout/activity_products.xml" value="0.3415384615384615" />
         <entry key="..\:/Users/CJ/Documents/Courses/Computer_Science(4th_Semester)/App. Dev. (Mobile)/Team Project/FinalProjectDJCGrocery/app/src/main/res/layout/activity_register.xml" value="0.3415384615384615" />
         <entry key="..\:/Users/CJ/Documents/Courses/Computer_Science(4th_Semester)/App. Dev. (Mobile)/Team Project/FinalProjectDJCGrocery/app/src/main/res/layout/fragment_cart.xml" value="0.3415384615384615" />
+        <entry key="..\:/Users/dpate/OneDrive/Desktop/semester 4/AppDev_FinalProject/FinalProjectDJCGrocery/app/src/main/res/layout/activity_main.xml" value="0.34646739130434784" />
+        <entry key="..\:/Users/dpate/OneDrive/Desktop/semester 4/AppDev_FinalProject/FinalProjectDJCGrocery/app/src/main/res/layout/activity_register.xml" value="0.34646739130434784" />
       </map>
     </option>
   </component>

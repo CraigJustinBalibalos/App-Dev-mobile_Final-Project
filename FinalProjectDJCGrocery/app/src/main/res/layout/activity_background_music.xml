@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#E6EAC4"
+    android:background="#E8E6E1"
     tools:context=".BackgroundMusic">
 
     <TextView
@@ -16,7 +16,7 @@
         android:layout_marginEnd="45dp"
         android:layout_marginBottom="42dp"
         android:text="Control Center"
-        android:textColor="#6AAA1F"
+        android:textColor="#3B8881"
         android:textSize="48sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/play"
@@ -29,12 +29,12 @@
         android:layout_width="105dp"
         android:layout_height="0dp"
         android:layout_marginBottom="20dp"
+        android:onClick="play"
         app:layout_constraintBottom_toTopOf="@+id/textView14"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView13"
-        app:srcCompat="@drawable/audio"
-        android:onClick="play"/>
+        app:srcCompat="@drawable/audio" />
 
     <TextView
         android:id="@+id/textView14"
@@ -44,7 +44,8 @@
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="69dp"
         android:text="Play"
-        android:textColor="#8BC34A"
+        android:textAlignment="center"
+        android:textColor="#2F3E1F"
         android:textSize="34sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/mute"
@@ -57,12 +58,12 @@
         android:layout_width="110dp"
         android:layout_height="0dp"
         android:layout_marginBottom="15dp"
+        android:onClick="stop"
         app:layout_constraintBottom_toTopOf="@+id/textView15"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView14"
-        app:srcCompat="@drawable/no_sound__1_"
-        android:onClick="stop"/>
+        app:srcCompat="@drawable/no_sound__1_" />
 
     <TextView
         android:id="@+id/textView15"
@@ -72,7 +73,8 @@
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="136dp"
         android:text="Mute"
-        android:textColor="#8BC34A"
+        android:textAlignment="center"
+        android:textColor="#2F3E1F"
         android:textSize="34sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"

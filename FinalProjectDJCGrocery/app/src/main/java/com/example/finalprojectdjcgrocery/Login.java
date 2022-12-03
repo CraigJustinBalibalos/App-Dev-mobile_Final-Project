@@ -25,65 +25,57 @@ public class Login extends AppCompatActivity {
     EditText username, password;
     Button loginBtn;
 
-    String uName ,uPass;
+    String uName ,uPass, uRole;
 
     ImageView mute;
 
+    User currentUser;
+
     DatabaseReference ref;
 
-    MediaPlayer mediaPlayer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        Intent getSong = getIntent();
-        int position = getSong.getIntExtra("song", 0);
-
-        if(mediaPlayer==null){
-            mediaPlayer = MediaPlayer.create(this,R.raw.song);
-            mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-                @Override
-                public void onCompletion(MediaPlayer mediaPlayer) {
-                    mediaPlayer.start();
-                }
-            });
-        }
-        mediaPlayer.seekTo(position);
-        mediaPlayer.start();
-
         username = findViewById(R.id.inputUsername);
         password = findViewById(R.id.inputPassword);
         mute = findViewById(R.id.muteIcon);
+
+        currentUser = new User();
 
         loginBtn = findViewById(R.id.loginBtn2);
 
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ref = FirebaseDatabase.getInstance().getReference().child("User").child("1");
-                //ref = FirebaseDatabase.getInstance().getReference().child("User").child(name);
+                ref = FirebaseDatabase.getInstance().getReference().child("User");
                 ref.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        uName = snapshot.child("username").getValue().toString().trim();
-                        uPass = snapshot.child("password").getValue().toString().trim();
+                        for(DataSnapshot dataSnapshot: snapshot.getChildren()) {
+                            if(username.getText().toString().equals(dataSnapshot.child("username").getValue().toString().trim()) &&
+                                    password.getText().toString().equals(dataSnapshot.child("password").getValue().toString().trim())) {
+                                uName = dataSnapshot.child("username").getValue().toString().trim();
+                                uPass = dataSnapshot.child("password").getValue().toString().trim();
+                                uRole = dataSnapshot.child("role").getValue().toString().trim();
 
-                        if(uName.equals(username.getText().toString().trim()) && uPass.equals(password.getText().toString().trim())){
-                            Toast.makeText(Login.this, "Login Successful", Toast.LENGTH_SHORT).show();
-                            mediaPlayer.pause();
-                            int position = mediaPlayer.getCurrentPosition();
-                            Intent i = new Intent(getApplicationContext(), Categories.class);
-                            i.putExtra("song", position);
-                            startActivity(i);
+                            }
                         }
-                        else if(username.getText().toString().equals("") || password.getText().toString().equals("")){
-                            Toast.makeText(Login.this, "Please Enter Valid Info", Toast.LENGTH_SHORT).show();
-                        }
-                        else{
-                            Toast.makeText(Login.this, "Login Failed", Toast.LENGTH_SHORT).show();
-                        }
+                            if (uName.equals(username.getText().toString().trim()) && uPass.equals(password.getText().toString().trim())) {
+                                currentUser.setUsername(uName);
+                                currentUser.setPassword(uPass);
+                                currentUser.setRole(uRole);
+                                Toast.makeText(Login.this, "Login Successful", Toast.LENGTH_SHORT).show();
+                                Intent i = new Intent(getApplicationContext(), Categories.class);
+                                i.putExtra("USERNAME", uName);
+                                startActivity(i);
+                            } else if (username.getText().toString().equals("") || password.getText().toString().equals("")) {
+                                Toast.makeText(Login.this, "Please Enter Valid Info", Toast.LENGTH_SHORT).show();
+                            } else {
+                                Toast.makeText(Login.this, "Login Failed", Toast.LENGTH_SHORT).show();
+                            }
                     }
 
                     @Override
@@ -96,14 +88,7 @@ public class Login extends AppCompatActivity {
     }
 
     public void stop(View view) {
-        stopPlayer();
+        MusicPlayer.stopAudio(this);
     }
 
-    private void stopPlayer() {
-        if(mediaPlayer != null){
-            mediaPlayer.release();
-            mediaPlayer = null;
-            Toast.makeText(this,"MediaPlayer source is released", Toast.LENGTH_SHORT).show();
-        }
-    }
 }
