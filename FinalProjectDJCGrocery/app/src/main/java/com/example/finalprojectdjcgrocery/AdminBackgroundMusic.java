@@ -4,7 +4,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -12,20 +11,18 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
-public class BackgroundMusic extends AppCompatActivity {
+public class AdminBackgroundMusic extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_background_music);
-
-
+        setContentView(R.layout.activity_admin_background_music);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu, menu);
+        inflater.inflate(R.menu.admin_menu, menu);
         return true;
     }
 
@@ -33,23 +30,18 @@ public class BackgroundMusic extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
         switch(item.getItemId()){
-            case R.id.account:
-                Toast.makeText(this, "Account is selected", Toast.LENGTH_SHORT).show();
-                Intent a = new Intent(getApplicationContext(), MyAccount.class);
+            case R.id.admin_homePage:
+                Toast.makeText(this, "Home page is selected", Toast.LENGTH_SHORT).show();
+                Intent a = new Intent(getApplicationContext(), AdminHomePage.class);
                 startActivity(a);
                 return true;
-            case R.id.music:
+            case R.id.adminMusic:
                 Toast.makeText(this, "Background Music is selected", Toast.LENGTH_SHORT).show();
-                Intent m = new Intent(getApplicationContext(), BackgroundMusic.class);
+                Intent m = new Intent(getApplicationContext(), AdminBackgroundMusic.class);
                 startActivity(m);
                 return true;
-            case R.id.categories:
-                Toast.makeText(this, "Categories is selected", Toast.LENGTH_SHORT).show();
-                Intent c = new Intent(getApplicationContext(), Categories.class);
-                startActivity(c);
-                return true;
-            case R.id.logout:
-                Toast.makeText(this, "Logged out", Toast.LENGTH_SHORT).show();
+            case R.id.admin_logout:
+                Toast.makeText(this, "Logout successful", Toast.LENGTH_SHORT).show();
                 Intent l = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(l);
             default:

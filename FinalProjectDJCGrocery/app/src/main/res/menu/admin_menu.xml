@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/admin_homePage"
+        android:title="Home Page" />
+    <item
+        android:id="@+id/adminMusic"
+        android:title="Background Music" />
+    <item
+        android:id="@+id/admin_logout"
+        android:icon="@drawable/_917901"
+        android:title="Logout" />
+</menu>

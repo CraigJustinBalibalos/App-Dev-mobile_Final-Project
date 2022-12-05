@@ -8,14 +8,44 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class OrderConfirmation extends AppCompatActivity {
+    //get total price
+
+    Button logout, shop;
+    TextView confirmTxt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order_confirmation);
+        logout = findViewById(R.id.logoutBtn);
+        shop = findViewById(R.id.returnBtn);
+        confirmTxt = findViewById(R.id.orderConfirmMessage);
+
+        confirmTxt.setText("Order has been placed! Total Price: ");
+
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(OrderConfirmation.this, "Logout successful", Toast.LENGTH_SHORT).show();
+                Intent l = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(l);
+            }
+        });
+
+        shop.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent l = new Intent(getApplicationContext(), Categories.class);
+                startActivity(l);
+            }
+        });
+
     }
 
     @Override
@@ -45,7 +75,7 @@ public class OrderConfirmation extends AppCompatActivity {
                 startActivity(c);
                 return true;
             case R.id.logout:
-                Toast.makeText(this, "Categories is selected", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Logout successful", Toast.LENGTH_SHORT).show();
                 Intent l = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(l);
             default:

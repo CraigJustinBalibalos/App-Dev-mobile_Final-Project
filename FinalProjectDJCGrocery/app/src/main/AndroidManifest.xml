@@ -14,10 +14,16 @@
         android:theme="@style/Theme.FinalProjectDJCGrocery"
         tools:targetApi="31">
         <activity
+            android:name=".AdminBackgroundMusic"
+            android:exported="false" />
+        <activity
             android:name=".AdminViewOrders"
             android:exported="false" />
         <activity
             android:name=".AdminAddCategory"
+            android:exported="false" />
+        <activity
+            android:name=".AdminAddProducts"
             android:exported="false" />
         <activity
             android:name=".AdminHomePage"

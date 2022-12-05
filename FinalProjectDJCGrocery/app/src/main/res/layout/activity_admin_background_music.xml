@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#E8E6E1"
-    tools:context=".BackgroundMusic">
+    tools:context=".AdminBackgroundMusic">
 
     <TextView
         android:id="@+id/textView13"
@@ -81,4 +81,5 @@
         app:layout_constraintEnd_toEndOf="@+id/admin_play"
         app:layout_constraintStart_toStartOf="@+id/admin_mute"
         app:layout_constraintTop_toBottomOf="@+id/admin_mute" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
