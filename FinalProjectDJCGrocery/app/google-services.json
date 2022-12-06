@@ -1,34 +1,34 @@
 {
   "project_info": {
-    "project_number": "156657128179",
-    "firebase_url": "https://djc-grocery-database-e5f93-default-rtdb.firebaseio.com",
-    "project_id": "djc-grocery-database-e5f93",
-    "storage_bucket": "djc-grocery-database-e5f93.appspot.com"
+    "project_number": "727636974222",
+    "firebase_url": "https://final-project-djc-grocery-default-rtdb.firebaseio.com",
+    "project_id": "final-project-djc-grocery",
+    "storage_bucket": "final-project-djc-grocery.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:156657128179:android:ed5ee39b7520d9d09fdd86",
+        "mobilesdk_app_id": "1:727636974222:android:c5c3f052790f639629c7df",
         "android_client_info": {
           "package_name": "com.example.finalprojectdjcgrocery"
         }
       },
       "oauth_client": [
         {
-          "client_id": "156657128179-d7c10vgua48iqmgqossh1g5jk90r0iou.apps.googleusercontent.com",
+          "client_id": "727636974222-aih8etrbnqeboiiqkkmmubpmi7p3ebq1.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCpejm-5OyyYMHVQO9swdc4onlAzHsv26c"
+          "current_key": "AIzaSyDcNBh1fFLZplri014crTFPLmDTNqfLXnw"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "156657128179-d7c10vgua48iqmgqossh1g5jk90r0iou.apps.googleusercontent.com",
+              "client_id": "727636974222-aih8etrbnqeboiiqkkmmubpmi7p3ebq1.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
