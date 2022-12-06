@@ -38,11 +38,9 @@ public class OrdersAdapter extends RecyclerView.Adapter<OrdersAdapter.OrdersView
 
     @Override
     public void onBindViewHolder(@NonNull OrdersViewHolder holder, int position) {
-//        String date = catList.get(position);
-//        holder.dateTxt.setText(category);
-//        holder.deliveryTxt.setText(category);
-//        holder.priceTxt.setText(category);
-
+        holder.dateTxt.setText(dateList.get(position));
+        holder.deliveryTxt.setText(deliveryList.get(position));
+        holder.priceTxt.setText(priceList.get(position));
     }
 
 

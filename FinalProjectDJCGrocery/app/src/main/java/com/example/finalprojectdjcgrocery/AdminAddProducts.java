@@ -20,6 +20,11 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.StorageTask;
@@ -30,6 +35,10 @@ public class AdminAddProducts extends AppCompatActivity {
     Button imgBtn, confirm;
     ImageView img;
 
+    long maxID = 0;
+    Product product;
+    DatabaseReference ref;
+
     //image
     StorageReference mstorageRef;
     public Uri imguri;
@@ -39,6 +48,9 @@ public class AdminAddProducts extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_add_products);
+
+        product = new Product();
+
         pName = findViewById(R.id.newProName);
         desc = findViewById(R.id.newProDes);
         price = findViewById(R.id.newProPrice);
@@ -47,6 +59,21 @@ public class AdminAddProducts extends AppCompatActivity {
 
         mstorageRef = FirebaseStorage.getInstance().getReference("Images");
         img= findViewById(R.id.newProImg);
+
+        ref = FirebaseDatabase.getInstance().getReference().child("Product");
+        ref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.exists()){
+                    maxID = (snapshot.getChildrenCount());
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
 
         imgBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -63,6 +90,18 @@ public class AdminAddProducts extends AppCompatActivity {
 
                 } else {
                     Fileuploader();
+                    if(!pName.getText().toString().equals("") && !desc.getText().toString().equals("") && !price.getText().toString().equals("")){
+                        product.setName(pName.getText().toString());
+                        product.setDesc(desc.getText().toString());
+                        product.setPrice(price.getText().toString());
+                        product.setImg(mstorageRef.child(System.currentTimeMillis()
+                                + "." + getExtension(imguri)) + "");
+                        ref.child(String.valueOf(maxID + 1)).setValue(product);
+                        Toast.makeText(getApplicationContext(), "Product Added", Toast.LENGTH_SHORT).show();
+                    }
+                    else {
+                        Toast.makeText(getApplicationContext(), "Fields cannot be empty!", Toast.LENGTH_SHORT).show();
+                    }
                 }
             }
         });

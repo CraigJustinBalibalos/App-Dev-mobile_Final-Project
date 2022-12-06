@@ -63,12 +63,21 @@ public class Login extends AppCompatActivity {
 
                             }
                         }
-                            if (uName.equals(username.getText().toString().trim()) && uPass.equals(password.getText().toString().trim())) {
+                            if (uName.equals(username.getText().toString().trim()) && uPass.equals(password.getText().toString().trim()) && uRole.equals("user")) {
                                 currentUser.setUsername(uName);
                                 currentUser.setPassword(uPass);
                                 currentUser.setRole(uRole);
                                 Toast.makeText(Login.this, "Login Successful", Toast.LENGTH_SHORT).show();
                                 Intent i = new Intent(getApplicationContext(), Categories.class);
+                                i.putExtra("USERNAME", uName);
+                                startActivity(i);
+                            }
+                            else if (uName.equals(username.getText().toString().trim()) && uPass.equals(password.getText().toString().trim()) && uRole.equals("admin")){
+                                currentUser.setUsername(uName);
+                                currentUser.setPassword(uPass);
+                                currentUser.setRole(uRole);
+                                Toast.makeText(Login.this, "Login Successful", Toast.LENGTH_SHORT).show();
+                                Intent i = new Intent(getApplicationContext(), AdminHomePage.class);
                                 i.putExtra("USERNAME", uName);
                                 startActivity(i);
                             } else if (username.getText().toString().equals("") || password.getText().toString().equals("")) {
