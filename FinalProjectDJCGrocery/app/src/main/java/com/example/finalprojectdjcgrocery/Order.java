@@ -1,7 +1,7 @@
 package com.example.finalprojectdjcgrocery;
 
 public class Order {
-    String date, delivery, price;
+    String username, date, delivery, price;
 
     public Order() {
     }
@@ -10,6 +10,21 @@ public class Order {
         this.date = date;
         this.delivery = delivery;
         this.price = price;
+    }
+
+    public Order(String username, String date, String delivery, String price) {
+        this.username = username;
+        this.date = date;
+        this.delivery = delivery;
+        this.price = price;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getDate() {
@@ -39,7 +54,8 @@ public class Order {
     @Override
     public String toString() {
         return "Order{" +
-                "date='" + date + '\'' +
+                "username='" + username + '\'' +
+                ", date='" + date + '\'' +
                 ", delivery='" + delivery + '\'' +
                 ", price='" + price + '\'' +
                 '}';

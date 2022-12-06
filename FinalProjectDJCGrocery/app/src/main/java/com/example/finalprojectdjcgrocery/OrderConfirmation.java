@@ -14,7 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class OrderConfirmation extends AppCompatActivity {
-    //get total price
+    //show total missing
 
     Button logout, shop;
     TextView confirmTxt;

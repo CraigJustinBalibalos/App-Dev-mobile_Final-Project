@@ -9,18 +9,19 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-
 import java.util.ArrayList;
 
-public class OrdersAdapter extends RecyclerView.Adapter<OrdersAdapter.OrdersViewHolder>{
+public class AdminViewOrdersAdapter extends RecyclerView.Adapter<AdminViewOrdersAdapter.AdminViewOrdersViewHolder>{
 
     Context context;
+    ArrayList<String> userList;
     ArrayList<String> dateList;
     ArrayList<String> deliveryList;
     ArrayList<String> priceList;
 
-    public OrdersAdapter(Context context, ArrayList<String> dateList, ArrayList<String> deliveryList, ArrayList<String> priceList) {
+    public AdminViewOrdersAdapter(Context context, ArrayList<String> userList, ArrayList<String> dateList, ArrayList<String> deliveryList, ArrayList<String> priceList) {
         this.context = context;
+        this.userList = userList;
         this.dateList = dateList;
         this.deliveryList = deliveryList;
         this.priceList = priceList;
@@ -28,13 +29,14 @@ public class OrdersAdapter extends RecyclerView.Adapter<OrdersAdapter.OrdersView
 
     @NonNull
     @Override
-    public OrdersAdapter.OrdersViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(context).inflate(R.layout.row_child_user_view_order, parent, false);
-        return new OrdersAdapter.OrdersViewHolder(v);
+    public AdminViewOrdersAdapter.AdminViewOrdersViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View v = LayoutInflater.from(context).inflate(R.layout.row_child_admin_view_orders, parent, false);
+        return new AdminViewOrdersAdapter.AdminViewOrdersViewHolder(v);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull OrdersViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull AdminViewOrdersAdapter.AdminViewOrdersViewHolder holder, int position) {
+        holder.userTxt.setText(userList.get(position));
         holder.dateTxt.setText(dateList.get(position));
         holder.deliveryTxt.setText(deliveryList.get(position));
         holder.priceTxt.setText(priceList.get(position));
@@ -43,14 +45,15 @@ public class OrdersAdapter extends RecyclerView.Adapter<OrdersAdapter.OrdersView
 
     @Override
     public int getItemCount() {
-        return dateList.size();
+        return userList.size();
     }
 
-    public static class OrdersViewHolder extends RecyclerView.ViewHolder {
-        TextView dateTxt, deliveryTxt, priceTxt;
+    public static class AdminViewOrdersViewHolder extends RecyclerView.ViewHolder {
+        TextView userTxt, dateTxt, deliveryTxt, priceTxt;
 
-        public OrdersViewHolder(@NonNull View itemView) {
+        public AdminViewOrdersViewHolder(@NonNull View itemView) {
             super(itemView);
+            userTxt = (TextView) itemView.findViewById(R.id.admin_view_order_username);
             dateTxt = (TextView) itemView.findViewById(R.id.admin_view_order_date);
             deliveryTxt = (TextView) itemView.findViewById(R.id.admin_view_order_delivery);
             priceTxt = (TextView) itemView.findViewById(R.id.admin_view_order_price);
@@ -58,3 +61,4 @@ public class OrdersAdapter extends RecyclerView.Adapter<OrdersAdapter.OrdersView
         }
     }
 }
+
