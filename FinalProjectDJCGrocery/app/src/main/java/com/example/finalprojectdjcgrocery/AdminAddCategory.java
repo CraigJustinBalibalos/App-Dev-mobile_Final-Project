@@ -40,8 +40,11 @@ public class AdminAddCategory extends AppCompatActivity {
 
     ArrayList<String> catList;
     ArrayList<String> imgList;
+
     DatabaseReference ref;
     CategoriesAdapter adapter;
+    Category category;
+    long maxID = 0;
 
     //image
     StorageReference mstorageRef;
@@ -56,6 +59,23 @@ public class AdminAddCategory extends AppCompatActivity {
         img = findViewById(R.id.browseImgBtn);
         confirm = findViewById(R.id.confirmNewCatBtn);
         rv_cat = findViewById(R.id.recyclerview_checkCat);
+
+        mstorageRef = FirebaseStorage.getInstance().getReference("Images");
+
+        ref = FirebaseDatabase.getInstance().getReference().child("Category");
+        ref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.exists()){
+                    maxID = (snapshot.getChildrenCount());
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
 
         img.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -72,29 +92,34 @@ public class AdminAddCategory extends AppCompatActivity {
 
                 } else {
                     Fileuploader();
+                    if(!catName.getText().toString().equals("")){
+                        category.setName(catName.getText().toString());
+                        category.setImg(mstorageRef.child(System.currentTimeMillis()
+                                + "." + getExtension(imguri)) + "");
+                        ref.child(String.valueOf(maxID + 1)).setValue(category);
+                        Toast.makeText(getApplicationContext(), "Category Added", Toast.LENGTH_SHORT).show();
+                    }
+                    else {
+                        Toast.makeText(getApplicationContext(), "Fields cannot be empty!", Toast.LENGTH_SHORT).show();
+                    }
                 }
             }
         });
-
-        mstorageRef = FirebaseStorage.getInstance().getReference("Images");
-
-
 
         rv_cat.setLayoutManager(new LinearLayoutManager(this));
 
         catList = new ArrayList<String>();
         imgList = new ArrayList<String>();
 
-        ref = FirebaseDatabase.getInstance().getReference().child("Category");
         ref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for(DataSnapshot dataSnapshot: snapshot.getChildren()){
 //                        Category cat = dataSnapshot.getValue(Category.class);
 //                        catList.add(cat);
-                    String categoryName = dataSnapshot.child("category_name").getValue().toString().trim();
+                    String categoryName = dataSnapshot.child("name").getValue().toString().trim();
                     catList.add(categoryName);
-                    String categoryImg = dataSnapshot.child("category_img").getValue().toString().trim();
+                    String categoryImg = dataSnapshot.child("img").getValue().toString().trim();
                     imgList.add(categoryImg);
                 }
                 //adapter.notifyDataSetChanged();
@@ -107,8 +132,6 @@ public class AdminAddCategory extends AppCompatActivity {
                 Toast.makeText(AdminAddCategory.this, "Unable to load categories", Toast.LENGTH_SHORT).show();
             }
         });
-
-
     }
 
     //image
@@ -118,10 +141,7 @@ public class AdminAddCategory extends AppCompatActivity {
         return mimeTypeMap.getExtensionFromMimeType(cr.getType(uri));
     }
 
-
-
     private void Fileuploader() {
-
         StorageReference ref = mstorageRef.child(System.currentTimeMillis()
                 + "." + getExtension(imguri) );
         uploadTask = ref.putFile(imguri)
@@ -149,10 +169,7 @@ public class AdminAddCategory extends AppCompatActivity {
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
         startActivityForResult(intent,1);
-
-
     }
-
 
     //menu
     @Override
