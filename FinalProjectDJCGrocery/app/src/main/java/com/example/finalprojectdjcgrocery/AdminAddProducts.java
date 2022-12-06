@@ -58,7 +58,7 @@ public class AdminAddProducts extends AppCompatActivity {
         confirm = findViewById(R.id.newProConfirmBtn);
 
         mstorageRef = FirebaseStorage.getInstance().getReference("Images");
-        img= findViewById(R.id.newProImg);
+        img = findViewById(R.id.newProImg);
 
         ref = FirebaseDatabase.getInstance().getReference().child("Product");
         ref.addValueEventListener(new ValueEventListener() {
@@ -114,10 +114,7 @@ public class AdminAddProducts extends AppCompatActivity {
         return mimeTypeMap.getExtensionFromMimeType(cr.getType(uri));
     }
 
-
-
     private void Fileuploader() {
-
         StorageReference ref = mstorageRef.child(System.currentTimeMillis()
                 + "." + getExtension(imguri) );
         uploadTask = ref.putFile(imguri)
