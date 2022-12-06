@@ -49,16 +49,16 @@ public class Categories extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for(DataSnapshot dataSnapshot: snapshot.getChildren()){
-                        Category cat = dataSnapshot.getValue(Category.class);
-                        catList.add(cat);
+                        //Category cat = dataSnapshot.getValue(Category.class);
+                        //catList.add(cat);
                     String categoryName = dataSnapshot.child("name").getValue().toString().trim();
                     catList.add(categoryName);
                     String categoryImg = dataSnapshot.child("img").getValue().toString().trim();
                     imgList.add(categoryImg);
-                   String categoryName = dataSnapshot.child("category_name").getValue().toString().trim();
-                    catList.add(categoryName);
-                    String categoryImg = dataSnapshot.child("category_img").getValue().toString().trim();
-                    imgList.add(categoryImg);
+                    //String categoryName = dataSnapshot.child("category_name").getValue().toString().trim();
+                    //catList.add(categoryName);
+                    //String categoryImg = dataSnapshot.child("category_img").getValue().toString().trim();
+                    //imgList.add(categoryImg);
                 }
                 //adapter.notifyDataSetChanged();
                 adapter = new CategoriesAdapter(Categories.this, catList, imgList);
