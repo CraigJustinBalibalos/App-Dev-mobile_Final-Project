@@ -59,6 +59,10 @@ public class AdminAddCategory extends AppCompatActivity {
         img = findViewById(R.id.browseImgBtn);
         confirm = findViewById(R.id.confirmNewCatBtn);
         rv_cat = findViewById(R.id.recyclerview_checkCat);
+        rv_cat.setLayoutManager(new LinearLayoutManager(this));
+
+        category = new Category();
+
 
         mstorageRef = FirebaseStorage.getInstance().getReference("Images");
 
@@ -106,7 +110,6 @@ public class AdminAddCategory extends AppCompatActivity {
             }
         });
 
-        rv_cat.setLayoutManager(new LinearLayoutManager(this));
 
         catList = new ArrayList<String>();
         imgList = new ArrayList<String>();
@@ -115,8 +118,6 @@ public class AdminAddCategory extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for(DataSnapshot dataSnapshot: snapshot.getChildren()){
-//                        Category cat = dataSnapshot.getValue(Category.class);
-//                        catList.add(cat);
                     String categoryName = dataSnapshot.child("name").getValue().toString().trim();
                     catList.add(categoryName);
                     String categoryImg = dataSnapshot.child("img").getValue().toString().trim();
@@ -169,6 +170,17 @@ public class AdminAddCategory extends AppCompatActivity {
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
         startActivityForResult(intent,1);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode ==1 && resultCode == RESULT_OK && data !=null && data.getData()!= null)
+        {
+            imguri = data.getData();
+//            img.setImageURI(imguri);
+
+        }
     }
 
     //menu

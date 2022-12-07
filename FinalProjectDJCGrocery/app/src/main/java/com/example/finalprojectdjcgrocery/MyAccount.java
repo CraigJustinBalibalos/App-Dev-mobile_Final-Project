@@ -2,6 +2,8 @@ package com.example.finalprojectdjcgrocery;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.media.MediaPlayer;
@@ -14,25 +16,56 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
 
 public class MyAccount extends AppCompatActivity {
 
     Button next;
     TextView nameTV;
-
-    DatabaseReference ref;
-
-//    Login login;
-
     String uName;
+
+    RecyclerView recyclerView;
+    ArrayList<String> dateList;
+    ArrayList<String> deliveryList;
+    ArrayList<String> priceList;
+    DatabaseReference ref;
+    OrdersAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_account);
+        recyclerView = findViewById(R.id.recyclerView_orderHistory);
+
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        ref = FirebaseDatabase.getInstance().getReference().child("Order");
+        ref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for(DataSnapshot dataSnapshot: snapshot.getChildren()){
+                    String date = dataSnapshot.child("order_date").getValue().toString().trim();
+                    dateList.add(date);
+                    String deliveryMethod = dataSnapshot.child("delivery").getValue().toString().trim();
+                    deliveryList.add(deliveryMethod);
+                    String total = dataSnapshot.child("order_price").getValue().toString().trim();
+                    priceList.add(total);
+                }
+                adapter = new OrdersAdapter(MyAccount.this, dateList, deliveryList, priceList);
+                recyclerView.setAdapter(adapter);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(MyAccount.this, "Unable to load order history", Toast.LENGTH_SHORT).show();
+            }
+        });
 
 //        String user = login.currentUser.getUsername();
 //
