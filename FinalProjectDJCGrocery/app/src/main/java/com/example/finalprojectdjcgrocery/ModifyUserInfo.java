@@ -15,13 +15,18 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class ModifyUserInfo extends AppCompatActivity {
 
@@ -30,11 +35,11 @@ public class ModifyUserInfo extends AppCompatActivity {
 
     String uPass, uName, uRole, confName;
 
-    DatabaseReference ref;
     User user;
-    ArrayList<String> usernameList = new ArrayList<>();
-    ArrayList<String> passList = new ArrayList<>();
-    ArrayList<String> roleList = new ArrayList<>();
+
+    DatabaseReference ref;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,84 +64,98 @@ public class ModifyUserInfo extends AppCompatActivity {
         changeName.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                DatabaseReference updateRef = FirebaseDatabase.getInstance().getReference().child("User");
-                ref = FirebaseDatabase.getInstance().getReference().child("User");
-                ref.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        for(DataSnapshot dataSnapshot: snapshot.getChildren()) {
-                            uName = dataSnapshot.child("username").getValue().toString().trim();
-                            uPass = dataSnapshot.child("password").getValue().toString().trim();
-                            uRole = dataSnapshot.child("role").getValue().toString().trim();
+                final Query userQuery = FirebaseDatabase.getInstance().getReference().child("User").orderByChild("username");
 
-                            usernameList.add(uName);
-                            passList.add(uPass);
-                            roleList.add(uRole);
-                        }
-                        for (int i = 0; i < usernameList.size(); i++) {
-                            System.out.println(confName);
-                            if(snapshot.child("username").getValue().equals(confName)){
-                                user.setUsername(username.getText().toString().trim());
-                                uPass = snapshot.child("password").getValue().toString().trim();
-                                uRole = snapshot.child("role").getValue().toString().trim();
-                                user.setPassword(uPass);
-                                user.setRole(uRole);
+                userQuery.equalTo(confName).addListenerForSingleValueEvent(
+                        new ValueEventListener() {
+                            @Override
+                            public void onDataChange(DataSnapshot dataSnapshot) {
+                                for (DataSnapshot userSnapshot : dataSnapshot.getChildren()) {
+                                    // result
+                                    String key = userSnapshot.getKey();
+                                    HashMap User = new HashMap();
+                                    User.put("username", username.getText().toString());
+                                    DatabaseReference updateRef = FirebaseDatabase.getInstance().getReference("User");
+                                    updateRef.child(key).updateChildren(User).addOnSuccessListener(new OnSuccessListener() {
+                                        @Override
+                                        public void onSuccess(Object o) {
+                                            Toast.makeText(ModifyUserInfo.this, "Username updated!", Toast.LENGTH_SHORT).show();
+                                            Intent a = new Intent(getApplicationContext(), MainActivity.class);
+                                            startActivity(a);
+                                        }
+                                    });
+                                }
+                            }
 
-                                ref.child(i + "").setValue(user);
-                                Toast.makeText(ModifyUserInfo.this, "SAVED", Toast.LENGTH_SHORT).show();
-                            }else Toast.makeText(ModifyUserInfo.this, "NOT SAVED", Toast.LENGTH_SHORT).show();
-                        }
+                            @Override
+                            public void onCancelled(DatabaseError databaseError) {
 
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-
-                    }
-                });
+                            }
+                        });
             }
         });
 
         changePass.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                DatabaseReference updateRef = FirebaseDatabase.getInstance().getReference().child("User").child("1");
-                updateRef.addValueEventListener(new ValueEventListener() {
+            public void onClick(View view) {
+                if(!oldPass.getText().toString().equals("")&& !password.getText().toString().equals("")&& !confpass.getText().toString().equals("")) {
+                    if (password.getText().toString().equals(confpass.getText().toString())) {
+                        final Query userQuery = FirebaseDatabase.getInstance().getReference().child("User").orderByChild("username");
+                        final Query passQuery = FirebaseDatabase.getInstance().getReference().child("User").orderByChild("password");
 
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        uName = snapshot.child("username").getValue().toString().trim();
-                        uPass = snapshot.child("password").getValue().toString().trim();
-                        uRole = snapshot.child("role").getValue().toString().trim();
-                        if (oldPass.getText().toString().equals(uPass)){
-                            if (password.getText().toString().equals(confpass.getText().toString())) {
-                                try {
-                                    user.setUsername(uName);
-                                    user.setPassword(password.getText().toString().trim());
-                                    user.setRole(uRole);
+                        userQuery.equalTo(confName).addListenerForSingleValueEvent(
+                                new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(DataSnapshot dataSnapshot) {
+                                        for (DataSnapshot userSnapshot : dataSnapshot.getChildren()) {
+                                            // result
+                                            String key = userSnapshot.getKey();
+                                            passQuery.equalTo(oldPass.getText().toString()).addListenerForSingleValueEvent(
+                                                    new ValueEventListener() {
+                                                        @Override
+                                                        public void onDataChange(DataSnapshot dataSnapshot) {
+                                                            for (DataSnapshot userSnapshot : dataSnapshot.getChildren()) {
+                                                                // result
+                                                                String key2 = userSnapshot.getKey();
+                                                                if (key2 == key) {
+                                                                    HashMap User = new HashMap();
+                                                                    User.put("password", password.getText().toString());
+                                                                    DatabaseReference updateRef = FirebaseDatabase.getInstance().getReference("User");
+                                                                    updateRef.child(key2).updateChildren(User).addOnSuccessListener(new OnSuccessListener() {
+                                                                        @Override
+                                                                        public void onSuccess(Object o) {
+                                                                            Toast.makeText(ModifyUserInfo.this, "Password updated!", Toast.LENGTH_SHORT).show();
+                                                                            Intent a = new Intent(getApplicationContext(), MainActivity.class);
+                                                                            startActivity(a);
+                                                                        }
+                                                                    });
+                                                                }
+                                                            }
+                                                        }
 
-//                                    ref = FirebaseDatabase.getInstance().getReference().child("User").child("1");
-                                    ref.setValue(user);
+                                                        @Override
+                                                        public void onCancelled(DatabaseError databaseError) {
 
-                                    Toast.makeText(ModifyUserInfo.this, "Data Updated", Toast.LENGTH_SHORT).show();
-                                } catch (NumberFormatException n) {
-                                    Toast.makeText(ModifyUserInfo.this, "Data not Updated", Toast.LENGTH_SHORT).show();
-                                }
-                            } else {
-                                Toast.makeText(ModifyUserInfo.this, "Passwords do not match", Toast.LENGTH_SHORT).show();
-                            }
-                        }else {
-                            Toast.makeText(ModifyUserInfo.this, "Incorrect old password", Toast.LENGTH_SHORT).show();
-                        }
+                                                        }
+                                                    });
+                                        }
+                                    }
+
+                                    @Override
+                                    public void onCancelled(DatabaseError databaseError) {
+
+                                    }
+                                });
+                    } else {
+                        Toast.makeText(ModifyUserInfo.this, "Password not match!", Toast.LENGTH_SHORT).show();
                     }
+                }else {
+                    Toast.makeText(ModifyUserInfo.this, "Fields cannot be empty!", Toast.LENGTH_SHORT).show();
+                }
 
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-
-                    }
-                });
             }
         });
+
 
         backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -147,6 +166,8 @@ public class ModifyUserInfo extends AppCompatActivity {
             }
         });
     }
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

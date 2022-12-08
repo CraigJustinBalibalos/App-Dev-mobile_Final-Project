@@ -21,7 +21,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class Categories extends AppCompatActivity {
+public class Categories extends AppCompatActivity implements RecyclerViewInterface{
 
     RecyclerView recyclerView;
     ArrayList<String> catList;
@@ -110,8 +110,13 @@ public class Categories extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
+//
+//    public void displayProducts(View view) {
+//
+//    }
 
-    public void displayProducts(View view) {
+    @Override
+    public void onItemClick(int position) {
 
     }
 }

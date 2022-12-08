@@ -45,27 +45,28 @@ public class MyAccount extends AppCompatActivity {
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        ref = FirebaseDatabase.getInstance().getReference().child("Order");
-        ref.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for(DataSnapshot dataSnapshot: snapshot.getChildren()){
-                    String date = dataSnapshot.child("order_date").getValue().toString().trim();
-                    dateList.add(date);
-                    String deliveryMethod = dataSnapshot.child("delivery").getValue().toString().trim();
-                    deliveryList.add(deliveryMethod);
-                    String total = dataSnapshot.child("order_price").getValue().toString().trim();
-                    priceList.add(total);
-                }
-                adapter = new OrdersAdapter(MyAccount.this, dateList, deliveryList, priceList);
-                recyclerView.setAdapter(adapter);
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(MyAccount.this, "Unable to load order history", Toast.LENGTH_SHORT).show();
-            }
-        });
+        //need it for order history
+//        ref = FirebaseDatabase.getInstance().getReference().child("Order");
+//        ref.addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                for(DataSnapshot dataSnapshot: snapshot.getChildren()){
+//                    String date = dataSnapshot.child("order_date").getValue().toString().trim();
+//                    dateList.add(date);
+//                    String deliveryMethod = dataSnapshot.child("delivery").getValue().toString().trim();
+//                    deliveryList.add(deliveryMethod);
+//                    String total = dataSnapshot.child("order_price").getValue().toString().trim();
+//                    priceList.add(total);
+//                }
+//                adapter = new OrdersAdapter(MyAccount.this, dateList, deliveryList, priceList);
+//                recyclerView.setAdapter(adapter);
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError error) {
+//                Toast.makeText(MyAccount.this, "Unable to load order history", Toast.LENGTH_SHORT).show();
+//            }
+//        });
 
 //        String user = login.currentUser.getUsername();
 //

@@ -87,16 +87,26 @@
         <entry key="..\:/Users/CJ/Documents/Courses/Computer_Science(4th_Semester)/App. Dev. (Mobile)/Team Project/FinalProjectDJCGrocery/app/src/main/res/layout/fragment_cart.xml" value="0.3415384615384615" />
         <entry key="..\:/Users/dpate/OneDrive/Desktop/semester 4/AppDev_FinalProject/FinalProjectDJCGrocery/app/src/main/res/layout/activity_main.xml" value="0.34646739130434784" />
         <entry key="..\:/Users/dpate/OneDrive/Desktop/semester 4/AppDev_FinalProject/FinalProjectDJCGrocery/app/src/main/res/layout/activity_register.xml" value="0.34646739130434784" />
+        <entry key="..\:/Users/ymimi/AndroidStudioProjects/FinalProjectDJCGrocery/app/src/main/res/layout/activity_admin_add_category.xml" value="0.25" />
+        <entry key="..\:/Users/ymimi/AndroidStudioProjects/FinalProjectDJCGrocery/app/src/main/res/layout/activity_admin_add_products.xml" value="0.25" />
+        <entry key="..\:/Users/ymimi/AndroidStudioProjects/FinalProjectDJCGrocery/app/src/main/res/layout/activity_admin_background_music.xml" value="0.25" />
+        <entry key="..\:/Users/ymimi/AndroidStudioProjects/FinalProjectDJCGrocery/app/src/main/res/layout/activity_admin_home_page.xml" value="0.25" />
         <entry key="..\:/Users/ymimi/AndroidStudioProjects/FinalProjectDJCGrocery/app/src/main/res/layout/activity_admin_view_orders.xml" value="0.25" />
+        <entry key="..\:/Users/ymimi/AndroidStudioProjects/FinalProjectDJCGrocery/app/src/main/res/layout/activity_background_music.xml" value="0.25" />
+        <entry key="..\:/Users/ymimi/AndroidStudioProjects/FinalProjectDJCGrocery/app/src/main/res/layout/activity_categories.xml" value="0.25" />
         <entry key="..\:/Users/ymimi/AndroidStudioProjects/FinalProjectDJCGrocery/app/src/main/res/layout/activity_checkout.xml" value="0.25" />
         <entry key="..\:/Users/ymimi/AndroidStudioProjects/FinalProjectDJCGrocery/app/src/main/res/layout/activity_delivery.xml" value="0.25" />
-        <entry key="..\:/Users/ymimi/AndroidStudioProjects/FinalProjectDJCGrocery/app/src/main/res/layout/activity_modify_user_info.xml" value="0.25" />
+        <entry key="..\:/Users/ymimi/AndroidStudioProjects/FinalProjectDJCGrocery/app/src/main/res/layout/activity_login.xml" value="0.25" />
+        <entry key="..\:/Users/ymimi/AndroidStudioProjects/FinalProjectDJCGrocery/app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="..\:/Users/ymimi/AndroidStudioProjects/FinalProjectDJCGrocery/app/src/main/res/layout/activity_modify_user_info.xml" value="0.1" />
         <entry key="..\:/Users/ymimi/AndroidStudioProjects/FinalProjectDJCGrocery/app/src/main/res/layout/activity_my_account.xml" value="0.25" />
+        <entry key="..\:/Users/ymimi/AndroidStudioProjects/FinalProjectDJCGrocery/app/src/main/res/layout/activity_products.xml" value="0.25" />
         <entry key="..\:/Users/ymimi/AndroidStudioProjects/FinalProjectDJCGrocery/app/src/main/res/layout/fragment_cart.xml" value="0.25" />
         <entry key="..\:/Users/ymimi/AndroidStudioProjects/FinalProjectDJCGrocery/app/src/main/res/layout/fragment_first.xml" value="0.25" />
         <entry key="..\:/Users/ymimi/AndroidStudioProjects/FinalProjectDJCGrocery/app/src/main/res/layout/fragment_second.xml" value="0.25" />
         <entry key="..\:/Users/ymimi/AndroidStudioProjects/FinalProjectDJCGrocery/app/src/main/res/layout/row_child_admin_view_orders.xml" value="0.25" />
         <entry key="..\:/Users/ymimi/AndroidStudioProjects/FinalProjectDJCGrocery/app/src/main/res/layout/row_child_cart.xml" value="0.25" />
+        <entry key="..\:/Users/ymimi/AndroidStudioProjects/FinalProjectDJCGrocery/app/src/main/res/layout/row_child_categories.xml" value="0.25" />
         <entry key="..\:/Users/ymimi/AndroidStudioProjects/FinalProjectDJCGrocery/app/src/main/res/layout/row_child_products.xml" value="0.25" />
         <entry key="..\:/Users/ymimi/AndroidStudioProjects/FinalProjectDJCGrocery/app/src/main/res/layout/row_child_user_view_order.xml" value="0.25" />
       </map>

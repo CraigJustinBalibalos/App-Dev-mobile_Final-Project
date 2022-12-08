@@ -50,48 +50,54 @@ public class Login extends AppCompatActivity {
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ref = FirebaseDatabase.getInstance().getReference().child("User");
-                ref.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        for(DataSnapshot dataSnapshot: snapshot.getChildren()) {
-                            if(username.getText().toString().equals(dataSnapshot.child("username").getValue().toString().trim()) &&
-                                    password.getText().toString().equals(dataSnapshot.child("password").getValue().toString().trim())) {
-                                uName = dataSnapshot.child("username").getValue().toString().trim();
-                                uPass = dataSnapshot.child("password").getValue().toString().trim();
-                                uRole = dataSnapshot.child("role").getValue().toString().trim();
-
+                if(!username.getText().toString().isEmpty()&& !password.getText().toString().isEmpty()) {
+                    ref = FirebaseDatabase.getInstance().getReference().child("User");
+                    ref.addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                                if (username.getText().toString().equals(dataSnapshot.child("username").getValue().toString().trim()) &&
+                                        password.getText().toString().equals(dataSnapshot.child("password").getValue().toString().trim())) {
+                                    uName = dataSnapshot.child("username").getValue().toString().trim();
+                                    uPass = dataSnapshot.child("password").getValue().toString().trim();
+                                    uRole = dataSnapshot.child("role").getValue().toString().trim();
+                                }
+                            }
+                            if(uName!=null&&uPass!=null&&uRole!=null) {
+                                if (uName.equals(username.getText().toString().trim()) && uPass.equals(password.getText().toString().trim()) && uRole.equals("user")) {
+                                    currentUser.setUsername(uName);
+                                    currentUser.setPassword(uPass);
+                                    currentUser.setRole(uRole);
+                                    Toast.makeText(Login.this, "Login Successful", Toast.LENGTH_SHORT).show();
+                                    Intent i = new Intent(getApplicationContext(), Categories.class);
+                                    i.putExtra("USERNAME", uName);
+                                    startActivity(i);
+                                } else if (uName.equals(username.getText().toString().trim()) && uPass.equals(password.getText().toString().trim()) && uRole.equals("admin")) {
+                                    currentUser.setUsername(uName);
+                                    currentUser.setPassword(uPass);
+                                    currentUser.setRole(uRole);
+                                    Toast.makeText(Login.this, "Login Successful", Toast.LENGTH_SHORT).show();
+                                    Intent i = new Intent(getApplicationContext(), AdminHomePage.class);
+                                    i.putExtra("USERNAME", uName);
+                                    startActivity(i);
+                                } else if (username.getText().toString().equals("") || password.getText().toString().equals("")) {
+                                    Toast.makeText(Login.this, "Please Enter Valid Info", Toast.LENGTH_SHORT).show();
+                                } else {
+                                    Toast.makeText(Login.this, "Login Failed", Toast.LENGTH_SHORT).show();
+                                }
+                            }else{
+                                Toast.makeText(Login.this, "Invalid Info", Toast.LENGTH_SHORT).show();
                             }
                         }
-                            if (uName.equals(username.getText().toString().trim()) && uPass.equals(password.getText().toString().trim()) && uRole.equals("user")) {
-                                currentUser.setUsername(uName);
-                                currentUser.setPassword(uPass);
-                                currentUser.setRole(uRole);
-                                Toast.makeText(Login.this, "Login Successful", Toast.LENGTH_SHORT).show();
-                                Intent i = new Intent(getApplicationContext(), Categories.class);
-                                i.putExtra("USERNAME", uName);
-                                startActivity(i);
-                            }
-                            else if (uName.equals(username.getText().toString().trim()) && uPass.equals(password.getText().toString().trim()) && uRole.equals("admin")){
-                                currentUser.setUsername(uName);
-                                currentUser.setPassword(uPass);
-                                currentUser.setRole(uRole);
-                                Toast.makeText(Login.this, "Login Successful", Toast.LENGTH_SHORT).show();
-                                Intent i = new Intent(getApplicationContext(), AdminHomePage.class);
-                                i.putExtra("USERNAME", uName);
-                                startActivity(i);
-                            } else if (username.getText().toString().equals("") || password.getText().toString().equals("")) {
-                                Toast.makeText(Login.this, "Please Enter Valid Info", Toast.LENGTH_SHORT).show();
-                            } else {
-                                Toast.makeText(Login.this, "Login Failed", Toast.LENGTH_SHORT).show();
-                            }
-                    }
 
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
 
-                    }
-                });
+                        }
+                    });
+                }else{
+                    Toast.makeText(Login.this, "Fields cannot be empty!", Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
