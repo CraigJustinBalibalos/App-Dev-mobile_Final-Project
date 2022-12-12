@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AdminAddProducts"
+    tools:context=".admin_pages.AdminAddProducts"
     android:background="#F1F0E4">
 
     <TextView

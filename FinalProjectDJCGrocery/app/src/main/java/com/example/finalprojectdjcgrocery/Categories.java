@@ -6,6 +6,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -13,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.finalprojectdjcgrocery.adapters.CategoriesAdapter;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -21,12 +23,15 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class Categories extends AppCompatActivity implements RecyclerViewInterface{
+public class Categories extends AppCompatActivity{
 
     RecyclerView recyclerView;
+    Button shopAllBtn;
+
     ArrayList<String> catList;
     ArrayList<String> imgList;
     DatabaseReference ref;
+
     CategoriesAdapter adapter;
     String uName;
 
@@ -38,6 +43,7 @@ public class Categories extends AppCompatActivity implements RecyclerViewInterfa
         Intent getName = getIntent();
         uName = getName.getStringExtra("USERNAME");
 
+        shopAllBtn = findViewById(R.id.shopAllBtn);
         recyclerView = (RecyclerView) findViewById(R.id.recyclerViewCat);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
@@ -71,6 +77,13 @@ public class Categories extends AppCompatActivity implements RecyclerViewInterfa
             }
         });
 
+        shopAllBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(), Products.class);
+                startActivity(i);
+            }
+        });
     }
 
     @Override
@@ -115,8 +128,4 @@ public class Categories extends AppCompatActivity implements RecyclerViewInterfa
 //
 //    }
 
-    @Override
-    public void onItemClick(int position) {
-
-    }
 }
