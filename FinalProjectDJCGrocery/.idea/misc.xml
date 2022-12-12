@@ -3,13 +3,17 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/2069192/Downloads/Team_Project/Team Project/FinalProjectDJCGrocery/app/src/main/res/layout/activity_admin_add_category.xml" value="0.17135416666666667" />
         <entry key="..\:/Users/2069192/Downloads/Team_Project/Team Project/FinalProjectDJCGrocery/app/src/main/res/layout/activity_cart.xml" value="0.25" />
         <entry key="..\:/Users/2069192/Downloads/Team_Project/Team Project/FinalProjectDJCGrocery/app/src/main/res/layout/activity_categories.xml" value="0.25" />
         <entry key="..\:/Users/2069192/Downloads/Team_Project/Team Project/FinalProjectDJCGrocery/app/src/main/res/layout/activity_checkout.xml" value="0.1527777777777778" />
+        <entry key="..\:/Users/2069192/Downloads/Team_Project/Team Project/FinalProjectDJCGrocery/app/src/main/res/layout/activity_location.xml" value="0.17135416666666667" />
         <entry key="..\:/Users/2069192/Downloads/Team_Project/Team Project/FinalProjectDJCGrocery/app/src/main/res/layout/activity_products.xml" value="0.271286231884058" />
         <entry key="..\:/Users/2069192/Downloads/Team_Project/Team Project/FinalProjectDJCGrocery/app/src/main/res/layout/fragment_cart.xml" value="0.18885869565217392" />
         <entry key="..\:/Users/2069192/Downloads/Team_Project/Team Project/FinalProjectDJCGrocery/app/src/main/res/layout/row_child_cart.xml" value="0.18885869565217392" />
         <entry key="..\:/Users/2069192/Downloads/Team_Project/Team Project/FinalProjectDJCGrocery/app/src/main/res/layout/row_child_products.xml" value="0.17135416666666667" />
+        <entry key="..\:/Users/2069192/Downloads/Team_Project/Team Project/FinalProjectDJCGrocery/app/src/main/res/menu/admin_menu.xml" value="0.17135416666666667" />
+        <entry key="..\:/Users/2069192/Downloads/Team_Project/Team Project/FinalProjectDJCGrocery/app/src/main/res/menu/menu.xml" value="0.33" />
       </map>
     </option>
   </component>

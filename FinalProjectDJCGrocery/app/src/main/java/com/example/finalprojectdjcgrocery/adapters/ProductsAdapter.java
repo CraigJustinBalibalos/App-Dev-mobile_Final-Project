@@ -129,7 +129,7 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.Produc
             prodImg = (ImageView) itemView.findViewById(R.id.imageView4);
 
             addBtn = itemView.findViewById(R.id.button);
-            rmvBtn = itemView.findViewById(R.id.button2);
+//            rmvBtn = itemView.findViewById(R.id.button2);
 
             itemView.setOnClickListener(this);
         }
