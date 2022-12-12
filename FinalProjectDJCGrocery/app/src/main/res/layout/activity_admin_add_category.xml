@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AdminAddCategory"
+    tools:context=".admin_pages.AdminAddCategory"
     android:background="#F1F0E4">
 
     <EditText

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#D5D3C5"
-    tools:context=".AdminHomePage">
+    tools:context=".admin_pages.AdminHomePage">
 
     <Button
         android:id="@+id/viewOrdersBtn"

@@ -12,6 +12,9 @@
         android:id="@+id/categories"
         android:title="Categories" />
     <item
+        android:id="@+id/location"
+        android:title="Location" />
+    <item
         android:id="@+id/logout"
         android:icon="@drawable/_917901"
         android:title="Logout" />

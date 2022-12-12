@@ -15,6 +15,9 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.finalprojectdjcgrocery.adapters.CartItemAdapter;
+import com.example.finalprojectdjcgrocery.pojo.CartItem;
+import com.example.finalprojectdjcgrocery.pojo.Product;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -22,6 +25,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Checkout extends AppCompatActivity {
     //pass total price missing;
@@ -29,10 +33,11 @@ public class Checkout extends AppCompatActivity {
     TextView price;
 
     RecyclerView recyclerView;
-    ArrayList<String> imgList;
-    ArrayList<String> nameList;
-    ArrayList<String> priceList;
-    ArrayList<String> qtyList;
+    List<CartItem> productList;
+//    ArrayList<String> imgList;
+//    ArrayList<String> nameList;
+//    ArrayList<String> priceList;
+//    ArrayList<String> qtyList;
     DatabaseReference ref;
     CartItemAdapter adapter;
 
@@ -53,16 +58,19 @@ public class Checkout extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for(DataSnapshot dataSnapshot: snapshot.getChildren()){
-                    String img = dataSnapshot.child("product_img").getValue().toString().trim();
-                    imgList.add(img);
-                    String pName = dataSnapshot.child("product_name").getValue().toString().trim();
-                    nameList.add(pName);
-                    String price = dataSnapshot.child("product_price").getValue().toString().trim();
-                    priceList.add(price);
-                    String qty = dataSnapshot.child("product_qty").getValue().toString().trim();
-                    qtyList.add(qty);
+//                    String img = dataSnapshot.child("product_img").getValue().toString().trim();
+//                    imgList.add(img);
+//                    String pName = dataSnapshot.child("product_name").getValue().toString().trim();
+//                    nameList.add(pName);
+//                    String price = dataSnapshot.child("product_price").getValue().toString().trim();
+//                    priceList.add(price);
+//                    String qty = dataSnapshot.child("product_qty").getValue().toString().trim();
+//                    qtyList.add(qty);
+                    CartItem product = dataSnapshot.getValue(CartItem.class);
+                    product.setKey(dataSnapshot.getKey());
+                    productList.add(product);
                 }
-                adapter = new CartItemAdapter(Checkout.this, imgList, nameList, priceList, qtyList);
+                adapter = new CartItemAdapter(Checkout.this, productList);
                 recyclerView.setAdapter(adapter);
             }
 
