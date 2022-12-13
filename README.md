@@ -6,6 +6,7 @@
 - Jiamin Yuan
 - Dinal Patel
 - Craig Justin Balibalos
+- Collaborator: Sakkaravarthi Ramanathan
 
 ## Project Description:
 DJC is an online grocery store. 
@@ -14,19 +15,23 @@ Drink, Fruit, Vegetable, Meat, Etc.
 
 
 ## Features:
-1. Login/Logout
-2. Registration
-3. Open another activity when user logs in
-4. Adding/Removing from cart
-5. Toast a message when an item is added or removed from cart
-6. Database Connection
-7. Listing different options (using Menu)
-8. Listing products by categories (using Recycler View)
-9. Change username and  reset password
-10. Display contents of cart (using Fragments and in horizontal linear layout)
-11. Delivery and pick up option
-12. Date picker for delivery option
-13. Receive a notification once the order has been placed
-14. Background Music
+1.	Login and Logout
+2.	Registration
+3.	Open another activity when user logs in
+4.	Add product to cart
+5.	Firebase Connection
+6.	Add new category
+7.	Add new product
+8.	Location
+9.	Menu
+10.	Listing categories (using recycler view)
+11.	Change username
+12.	Reset password
+13.	Display contents of cart (using recycler view)
+14.	Delivery and pick up option
+15.	Date picker and Time picker for delivery option
+16.	Order confirmation 
+17.	Background Music: user can manage it in control center
+
 
 
