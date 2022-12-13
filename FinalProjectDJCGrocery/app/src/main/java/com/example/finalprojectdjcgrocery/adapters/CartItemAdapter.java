@@ -64,13 +64,13 @@ public class CartItemAdapter extends RecyclerView.Adapter<CartItemAdapter.CartVi
                 .load(itemList.get(position).getImgUrl())
                 .into(holder.showImg);
 
-        holder.deleteBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                FirebaseDatabase.getInstance().getReference().child("Cart").child(uName)
-                        .child(itemList.get(position).getKey()).removeValue();
-            }
-        });
+//        holder.deleteBtn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                FirebaseDatabase.getInstance().getReference().child("Cart").child(uName)
+//                        .child(itemList.get(position).getKey()).removeValue();
+//            }
+//        });
     }
 
 
@@ -123,7 +123,7 @@ public class CartItemAdapter extends RecyclerView.Adapter<CartItemAdapter.CartVi
 
     public static class CartViewHolder extends RecyclerView.ViewHolder {
         TextView showName, showPrice, showQty;
-        Button deleteBtn;
+//        Button deleteBtn;
         ImageView showImg;
 
         public CartViewHolder(@NonNull View itemView) {
@@ -132,7 +132,7 @@ public class CartItemAdapter extends RecyclerView.Adapter<CartItemAdapter.CartVi
             showPrice = (TextView) itemView.findViewById(R.id.cart_productPrice);
             showQty = (TextView) itemView.findViewById(R.id.cart_productQuantity);
             showImg = (ImageView) itemView.findViewById(R.id.cart_productImg);
-            deleteBtn = (Button) itemView.findViewById(R.id.deleteFromCartBtn);
+//            deleteBtn = (Button) itemView.findViewById(R.id.deleteFromCartBtn);
 
         }
     }
