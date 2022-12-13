@@ -18,6 +18,7 @@ import com.example.finalprojectdjcgrocery.R;
 import com.example.finalprojectdjcgrocery.interfaces.AddToCartInterface;
 import com.example.finalprojectdjcgrocery.pojo.CartItem;
 import com.example.finalprojectdjcgrocery.pojo.Product;
+import com.example.finalprojectdjcgrocery.pojo.User;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -34,11 +35,13 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.Produc
 
     Context context;
     List<Product> productList;
-    Products prod = new Products();
 
-    public ProductsAdapter(Context context, List<Product> productList) {
+    String uName;
+
+    public ProductsAdapter(Context context, List<Product> productList, String uName) {
         this.context = context;
         this.productList = productList;
+        this.uName = uName;
     }
 
     @NonNull
@@ -64,7 +67,7 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.Produc
     }
 
     private void addItem(Product product) {
-        DatabaseReference userCart = FirebaseDatabase.getInstance().getReference("Cart").child(prod.uName);
+        DatabaseReference userCart = FirebaseDatabase.getInstance().getReference("Cart").child(uName);
         userCart.child(product.getKey()).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {

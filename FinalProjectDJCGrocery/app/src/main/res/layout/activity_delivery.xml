@@ -13,7 +13,7 @@
         android:layout_height="48dp"
         android:layout_marginBottom="264dp"
         android:textColor="#C89B13"
-        android:textSize="30sp"
+        android:textSize="14sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -54,7 +54,7 @@
         android:layout_height="48dp"
         android:layout_marginTop="484dp"
         android:textColor="#C89B13"
-        android:textSize="30sp"
+        android:textSize="14sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.811"
@@ -63,13 +63,13 @@
 
     <Button
         android:id="@+id/timePicker"
-        android:layout_width="171dp"
-        android:layout_height="48dp"
+        android:layout_width="152dp"
+        android:layout_height="44dp"
         android:layout_marginTop="340dp"
         android:backgroundTint="#9BC36D"
         android:text="Choose time"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.933"
+        app:layout_constraintHorizontal_bias="0.876"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -89,8 +89,8 @@
 
     <Button
         android:id="@+id/datePicker"
-        android:layout_width="171dp"
-        android:layout_height="48dp"
+        android:layout_width="146dp"
+        android:layout_height="47dp"
         android:layout_marginTop="340dp"
         android:backgroundTint="#9BC36D"
         android:text="Choose Date"

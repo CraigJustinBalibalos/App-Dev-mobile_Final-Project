@@ -125,8 +125,13 @@ public class Delivery extends AppCompatActivity implements DatePickerDialog.OnDa
                 Intent c = new Intent(getApplicationContext(), Categories.class);
                 startActivity(c);
                 return true;
+            case R.id.location:
+                Toast.makeText(this, "Location is selected", Toast.LENGTH_SHORT).show();
+                Intent v = new Intent(getApplicationContext(), location.class);
+                startActivity(v);
+                return true;
             case R.id.logout:
-                Toast.makeText(this, "Logout is selected", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Logout successful", Toast.LENGTH_SHORT).show();
                 Intent l = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(l);
             default:

@@ -16,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.finalprojectdjcgrocery.adapters.CartItemAdapter;
+import com.example.finalprojectdjcgrocery.adapters.ProductsAdapter;
 import com.example.finalprojectdjcgrocery.pojo.CartItem;
 import com.example.finalprojectdjcgrocery.pojo.Product;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
@@ -32,9 +33,10 @@ public class Checkout extends AppCompatActivity {
     //pass total price missing;
     Button payNowBtn;
     TextView price;
+    String uName;
 
     RecyclerView recyclerView;
-    List<CartItem> productList;
+    List<CartItem> cart;
 //    ArrayList<String> imgList;
 //    ArrayList<String> nameList;
 //    ArrayList<String> priceList;
@@ -42,7 +44,7 @@ public class Checkout extends AppCompatActivity {
     DatabaseReference ref;
     CartItemAdapter adapter;
 
-    String uName;
+    double totalPrice = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,17 +57,25 @@ public class Checkout extends AppCompatActivity {
         recyclerView = findViewById(R.id.rv_cart);
         price = findViewById(R.id.priceTag);
 
-        price.setText("Total Price : ");
+        cart = new ArrayList<CartItem>();
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        FirebaseRecyclerOptions<CartItem> options =
-                new FirebaseRecyclerOptions.Builder<CartItem>()
-                        .setQuery(FirebaseDatabase.getInstance().getReference().child("Cart"), CartItem.class)
-                        .build();
+        loadCart();
 
-        adapter = new CartItemAdapter(options);
-        recyclerView.setAdapter(adapter);
+        for (CartItem price: cart) {
+            totalPrice += price.getTotal_price();
+        }
+
+        price.setText("Total Price : " + totalPrice);
+
+//        FirebaseRecyclerOptions<CartItem> options =
+//                new FirebaseRecyclerOptions.Builder<CartItem>()
+//                        .setQuery(FirebaseDatabase.getInstance().getReference().child("Cart").child(uName), CartItem.class)
+//                        .build();
+//
+//        adapter = new CartItemAdapter(options, this, uName);
+//        recyclerView.setAdapter(adapter);
 
 
 //        ref = FirebaseDatabase.getInstance().getReference().child("Cart").child(uName);
@@ -86,14 +96,14 @@ public class Checkout extends AppCompatActivity {
 //                        product.setKey(dataSnapshot.getKey());
 //                        productList.add(product);
 //                    }
-//                    adapter = new CartItemAdapter(Checkout.this, productList);
+//                    adapter = new CartItemAdapter(Checkout.this, productList, uName);
 //                    recyclerView.setAdapter(adapter);
 //                }
 //                else{
 //                    Toast.makeText(Checkout.this, "Cart is Empty!", Toast.LENGTH_SHORT).show();
 //                }
 //            }
-//
+
 //            @Override
 //            public void onCancelled(@NonNull DatabaseError error) {
 //                Toast.makeText(Checkout.this, "Unable to load cart products", Toast.LENGTH_SHORT).show();
@@ -109,11 +119,31 @@ public class Checkout extends AppCompatActivity {
         });
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu, menu);
-        return true;
+    private void loadCart() {
+        FirebaseDatabase.getInstance().getReference("Cart").child(uName).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.exists()) {
+                    for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                        CartItem cartItem = dataSnapshot.getValue(CartItem.class);
+                        cartItem.setKey(dataSnapshot.getKey());
+                        cart.add(cartItem);
+//                        totalPrice = totalPrice + cartItem.getTotal_price();
+                    }
+                    //adapter.notifyDataSetChanged();
+                    adapter = new CartItemAdapter(Checkout.this, cart, uName);
+                    recyclerView.setAdapter(adapter);
+                }
+                else{
+                    Toast.makeText(getApplicationContext(), "Could not load Products", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 
     @Override
@@ -123,21 +153,31 @@ public class Checkout extends AppCompatActivity {
             case R.id.account:
                 Toast.makeText(this, "Account is selected", Toast.LENGTH_SHORT).show();
                 Intent a = new Intent(getApplicationContext(), MyAccount.class);
+                a.putExtra("USERNAME", uName);
                 startActivity(a);
                 return true;
             case R.id.music:
                 Toast.makeText(this, "Background Music is selected", Toast.LENGTH_SHORT).show();
                 Intent m = new Intent(getApplicationContext(), BackgroundMusic.class);
+                m.putExtra("USERNAME", uName);
                 startActivity(m);
                 return true;
             case R.id.categories:
                 Toast.makeText(this, "Categories is selected", Toast.LENGTH_SHORT).show();
                 Intent c = new Intent(getApplicationContext(), Categories.class);
+                c.putExtra("USERNAME", uName);
                 startActivity(c);
                 return true;
+            case R.id.location:
+                Toast.makeText(this, "Location is selected", Toast.LENGTH_SHORT).show();
+                Intent v = new Intent(getApplicationContext(), location.class);
+                v.putExtra("USERNAME", uName);
+                startActivity(v);
+                return true;
             case R.id.logout:
-                Toast.makeText(this, "Categories is selected", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Logout successful", Toast.LENGTH_SHORT).show();
                 Intent l = new Intent(getApplicationContext(), MainActivity.class);
+                l.putExtra("USERNAME", uName);
                 startActivity(l);
             default:
                 return super.onOptionsItemSelected(item);

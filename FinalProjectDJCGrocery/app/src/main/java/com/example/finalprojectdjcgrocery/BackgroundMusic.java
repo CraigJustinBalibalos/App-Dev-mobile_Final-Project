@@ -13,13 +13,13 @@ import android.view.View;
 import android.widget.Toast;
 
 public class BackgroundMusic extends AppCompatActivity {
-
+String uName;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_background_music);
 
-
+        uName = getIntent().getStringExtra("USERNAME");
     }
 
     @Override
@@ -48,8 +48,13 @@ public class BackgroundMusic extends AppCompatActivity {
                 Intent c = new Intent(getApplicationContext(), Categories.class);
                 startActivity(c);
                 return true;
+            case R.id.location:
+                Toast.makeText(this, "Location is selected", Toast.LENGTH_SHORT).show();
+                Intent v = new Intent(getApplicationContext(), location.class);
+                startActivity(v);
+                return true;
             case R.id.logout:
-                Toast.makeText(this, "Logged out", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Logout successful", Toast.LENGTH_SHORT).show();
                 Intent l = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(l);
             default:

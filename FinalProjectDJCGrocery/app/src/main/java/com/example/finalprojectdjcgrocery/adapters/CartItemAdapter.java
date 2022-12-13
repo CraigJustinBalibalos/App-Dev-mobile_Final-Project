@@ -24,43 +24,79 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class CartItemAdapter extends FirebaseRecyclerAdapter<CartItem,CartItemAdapter.CartViewHolder> {
+public class CartItemAdapter extends RecyclerView.Adapter<CartItemAdapter.CartViewHolder> {
 
     Context context;
     List<CartItem> itemList;
+    String uName;
 
-    /**
-     * Initialize a {@link RecyclerView.Adapter} that listens to a Firebase query. See
-     * {@link FirebaseRecyclerOptions} for configuration options.
-     *
-     * @param options
-     */
-    public CartItemAdapter(@NonNull FirebaseRecyclerOptions<CartItem> options) {
-        super(options);
-    }
-
-//    ArrayList<String> imgList;
-//    ArrayList<String> nameList;
-//    ArrayList<String> priceList;
-//    ArrayList<String> qtyList;
-
-//    public CartItemAdapter(Context context, ArrayList<String> imgList, ArrayList<String> nameList, ArrayList<String> priceList, ArrayList<String> qtyList) {
-//        this.context = context;
-//        this.imgList = imgList;
-//        this.nameList = nameList;
-//        this.priceList = priceList;
-//        this.qtyList = qtyList;
+//    /**
+//     * Initialize a {@link RecyclerView.Adapter} that listens to a Firebase query. See
+//     * {@link FirebaseRecyclerOptions} for configuration options.
+//     *
+//     * @param options
+//     */
+//    public CartItemAdapter(@NonNull FirebaseRecyclerOptions<CartItem> options) {
+//        super(options);
 //    }
 
+
+    public CartItemAdapter(Context context, List<CartItem> itemList, String uName) {
+        this.context = context;
+        this.itemList = itemList;
+        this.uName = uName;
+    }
+
+    @NonNull
+    @Override
+    public CartItemAdapter.CartViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View v = LayoutInflater.from(context).inflate(R.layout.row_child_cart, parent, false);
+        return new CartItemAdapter.CartViewHolder(v);
+    }
+
+    @Override
+    public void onBindViewHolder(@NonNull CartItemAdapter.CartViewHolder holder, int position) {
+        holder.showName.setText(itemList.get(position).getpName());
+        holder.showPrice.setText(itemList.get(position).getPrice());
+        holder.showQty.setText(String.valueOf(itemList.get(position).getQty()));
+        Glide.with(context)
+                .asBitmap()
+                .load(itemList.get(position).getImgUrl())
+                .into(holder.showImg);
+
+        holder.deleteBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FirebaseDatabase.getInstance().getReference().child("Cart").child(uName)
+                        .child(itemList.get(position).getKey()).removeValue();
+            }
+        });
+    }
+
+
+//    public CartItemAdapter(@NonNull FirebaseRecyclerOptions<CartItem> options, Context context, List<CartItem> itemList, String uName) {
+//        super(options);
+//        this.context = context;
+//        this.itemList = itemList;
+//        this.uName = uName;
+//    }
+
+//    public CartItemAdapter(@NonNull FirebaseRecyclerOptions<CartItem> options, Context context, String uName) {
+//        super(options);
+//        this.context = context;
+////        this.itemList = itemList;
+//        this.uName = uName;
+//    }
+//
 //    @NonNull
 //    @Override
-//    public CartItemAdapter.CartViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+//    public CartViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 //        View v = LayoutInflater.from(context).inflate(R.layout.row_child_cart, parent, false);
 //        return new CartItemAdapter.CartViewHolder(v);
 //    }
 
 //    @Override
-//    public void onBindViewHolder(@NonNull CartItemAdapter.CartViewHolder holder, @SuppressLint("RecyclerView") int position) {
+//    protected void onBindViewHolder(@NonNull CartViewHolder holder, @SuppressLint("RecyclerView") int position, @NonNull CartItem model) {
 //        holder.showName.setText(itemList.get(position).getpName());
 //        holder.showPrice.setText(itemList.get(position).getPrice());
 //        holder.showQty.setText(itemList.get(position).getQty());
@@ -72,40 +108,11 @@ public class CartItemAdapter extends FirebaseRecyclerAdapter<CartItem,CartItemAd
 //        holder.deleteBtn.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View view) {
-//                FirebaseDatabase.getInstance().getReference().child("Cart").child("Username")
+//                FirebaseDatabase.getInstance().getReference().child("Cart").child(uName)
 //                        .child(Objects.requireNonNull(getRef(position).getKey())).removeValue();
 //            }
 //        });
 //    }
-
-
-    @NonNull
-    @Override
-    public CartViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(context).inflate(R.layout.row_child_cart, parent, false);
-        return new CartItemAdapter.CartViewHolder(v);
-    }
-
-    @Override
-    protected void onBindViewHolder(@NonNull CartViewHolder holder, @SuppressLint("RecyclerView") int position, @NonNull CartItem model) {
-        holder.showName.setText(itemList.get(position).getpName());
-        holder.showPrice.setText(itemList.get(position).getPrice());
-        holder.showQty.setText(itemList.get(position).getQty());
-        Glide.with(context)
-                .asBitmap()
-                .load(itemList.get(position).getImgUrl())
-                .into(holder.showImg);
-
-        holder.deleteBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                FirebaseDatabase.getInstance().getReference().child("Cart").child("Username")
-                        .child(Objects.requireNonNull(getRef(position).getKey())).removeValue();
-            }
-        });
-    }
-
-
 
     @Override
     public int getItemCount() {

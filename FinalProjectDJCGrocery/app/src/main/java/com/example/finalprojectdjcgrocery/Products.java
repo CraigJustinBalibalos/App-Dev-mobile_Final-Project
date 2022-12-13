@@ -100,7 +100,7 @@ public class Products extends AppCompatActivity {
                         products.add(product);
                     }
                     //adapter.notifyDataSetChanged();
-                    adapter = new ProductsAdapter(Products.this, products);
+                    adapter = new ProductsAdapter(Products.this, products, uName);
                     recyclerView.setAdapter(adapter);
                 }
                 else{
@@ -114,6 +114,7 @@ public class Products extends AppCompatActivity {
             }
         });
     }
+
 
 
     @Override
@@ -142,8 +143,13 @@ public class Products extends AppCompatActivity {
                 Intent c = new Intent(getApplicationContext(), Categories.class);
                 startActivity(c);
                 return true;
+            case R.id.location:
+                Toast.makeText(this, "Location is selected", Toast.LENGTH_SHORT).show();
+                Intent v = new Intent(getApplicationContext(), location.class);
+                startActivity(v);
+                return true;
             case R.id.logout:
-                Toast.makeText(this, "Categories is selected", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Logout successful", Toast.LENGTH_SHORT).show();
                 Intent l = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(l);
             default:

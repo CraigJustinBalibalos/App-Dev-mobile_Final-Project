@@ -8,18 +8,6 @@
     tools:context=".admin_pages.AdminHomePage">
 
     <Button
-        android:id="@+id/viewOrdersBtn"
-        android:layout_width="228dp"
-        android:layout_height="67dp"
-        android:layout_marginBottom="176dp"
-        android:backgroundTint="#77705B"
-        android:text="view orders"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
         android:id="@+id/addProductBtn"
         android:layout_width="228dp"
         android:layout_height="67dp"
