@@ -15,7 +15,6 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.finalprojectdjcgrocery.adapters.OrdersAdapter;
 import com.google.firebase.database.DatabaseReference;
 
 import java.util.ArrayList;
@@ -31,13 +30,11 @@ public class MyAccount extends AppCompatActivity {
     ArrayList<String> deliveryList;
     ArrayList<String> priceList;
     DatabaseReference ref;
-    OrdersAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_account);
-        recyclerView = findViewById(R.id.recyclerView_orderHistory);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 

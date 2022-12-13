@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -57,6 +58,10 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.Produc
                 .asBitmap()
                 .load(productList.get(position).getImg())
                 .into(holder.prodImg);
+
+        holder.prodName.setText(productList.get(position).getName());
+        holder.prodDesc.setText(productList.get(position).getDesc());
+        holder.prodPrice.setText(productList.get(position).getPrice());
 
         holder.setAdd(new AddToCartInterface() {
             @Override
@@ -118,6 +123,7 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.Produc
 
     public static class ProductsViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
+        TextView prodName, prodDesc, prodPrice;
         ImageView prodImg;
         Button addBtn, rmvBtn;
 
@@ -131,6 +137,10 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.Produc
             super(itemView);
 
             prodImg = (ImageView) itemView.findViewById(R.id.imageView4);
+
+            prodName = (TextView) itemView.findViewById(R.id.prodName);
+            prodDesc = (TextView) itemView.findViewById(R.id.prodDesc);
+            prodPrice = (TextView) itemView.findViewById(R.id.prodPrice);
 
             addBtn = itemView.findViewById(R.id.button);
 //            rmvBtn = itemView.findViewById(R.id.button2);

@@ -22,17 +22,9 @@ public class AdminHomePage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_home_page);
-        view = findViewById(R.id.viewOrdersBtn);
         addCat = findViewById(R.id.addCatBtn);
         addPro = findViewById(R.id.addProductBtn);
 
-        view.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent a = new Intent(getApplicationContext(), AdminViewOrders.class);
-                startActivity(a);
-            }
-        });
         addCat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
