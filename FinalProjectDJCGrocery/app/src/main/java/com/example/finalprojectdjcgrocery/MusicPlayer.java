@@ -31,4 +31,5 @@ public class MusicPlayer {
             Toast.makeText(c,"MediaPlayer source is released", Toast.LENGTH_SHORT).show();
         }
     }
+
 }

@@ -13,10 +13,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.finalprojectdjcgrocery.Login;
+import com.example.finalprojectdjcgrocery.Products;
 import com.example.finalprojectdjcgrocery.R;
 import com.example.finalprojectdjcgrocery.interfaces.AddToCartInterface;
 import com.example.finalprojectdjcgrocery.pojo.CartItem;
 import com.example.finalprojectdjcgrocery.pojo.Product;
+import com.example.finalprojectdjcgrocery.pojo.User;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -33,11 +35,13 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.Produc
 
     Context context;
     List<Product> productList;
-    Login login = new Login();
 
-    public ProductsAdapter(Context context, List<Product> productList) {
+    String uName;
+
+    public ProductsAdapter(Context context, List<Product> productList, String uName) {
         this.context = context;
         this.productList = productList;
+        this.uName = uName;
     }
 
     @NonNull
@@ -63,7 +67,7 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.Produc
     }
 
     private void addItem(Product product) {
-        DatabaseReference userCart = FirebaseDatabase.getInstance().getReference("Cart").child("UNIQUE_USER_ID");
+        DatabaseReference userCart = FirebaseDatabase.getInstance().getReference("Cart").child(uName);
         userCart.child(product.getKey()).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -86,7 +90,7 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.Produc
                     cartItem.setpName(product.getName());
                     cartItem.setImgUrl(product.getImg());
                     cartItem.setKey(product.getKey());
-                    cartItem.setUsername(login.uName);
+//                    cartItem.setUsername(prod.uName);
                     cartItem.setPrice(product.getPrice());
                     cartItem.setQty(1);
                     cartItem.setTotal_price(Float.parseFloat(product.getPrice()));

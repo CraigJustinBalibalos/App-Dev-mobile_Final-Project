@@ -81,6 +81,7 @@ public class Categories extends AppCompatActivity{
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(getApplicationContext(), Products.class);
+                i.putExtra("USERNAME", uName);
                 startActivity(i);
             }
         });
@@ -100,26 +101,31 @@ public class Categories extends AppCompatActivity{
             case R.id.account:
                 Toast.makeText(this, "Account is selected", Toast.LENGTH_SHORT).show();
                 Intent a = new Intent(getApplicationContext(), MyAccount.class);
+                a.putExtra("USERNAME", uName);
                 startActivity(a);
                 return true;
             case R.id.music:
                 Toast.makeText(this, "Background Music is selected", Toast.LENGTH_SHORT).show();
                 Intent m = new Intent(getApplicationContext(), BackgroundMusic.class);
+                m.putExtra("USERNAME", uName);
                 startActivity(m);
                 return true;
             case R.id.categories:
                 Toast.makeText(this, "Categories is selected", Toast.LENGTH_SHORT).show();
                 Intent c = new Intent(getApplicationContext(), Categories.class);
+                c.putExtra("USERNAME", uName);
                 startActivity(c);
                 return true;
             case R.id.location:
                 Toast.makeText(this, "Location is selected", Toast.LENGTH_SHORT).show();
                 Intent v = new Intent(getApplicationContext(), location.class);
+                v.putExtra("USERNAME", uName);
                 startActivity(v);
                 return true;
             case R.id.logout:
                 Toast.makeText(this, "Logout successful", Toast.LENGTH_SHORT).show();
                 Intent l = new Intent(getApplicationContext(), MainActivity.class);
+                l.putExtra("USERNAME", uName);
                 startActivity(l);
             default:
                 return super.onOptionsItemSelected(item);

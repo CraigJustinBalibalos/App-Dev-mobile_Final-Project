@@ -3,9 +3,9 @@ package com.example.finalprojectdjcgrocery.pojo;
 public class CartItem {
     String key, imgUrl, pName, price, username;
     int qty;
-    float total_price;
+    double total_price;
 
-    public CartItem(String key, String imgUrl, String pName, String price, String username, int qty, float total_price) {
+    public CartItem(String key, String imgUrl, String pName, String price, String username, int qty, double total_price) {
         this.key = key;
         this.imgUrl = imgUrl;
         this.pName = pName;
@@ -58,7 +58,7 @@ public class CartItem {
         this.qty = qty;
     }
 
-    public float getTotal_price() {
+    public double getTotal_price() {
         return total_price;
     }
 
