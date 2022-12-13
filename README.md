@@ -24,14 +24,13 @@ Drink, Fruit, Vegetable, Meat, Etc.
 7.	Add new product
 8.	Location
 9.	Menu
-10.	Listing categories (using recycler view)
-11.	Change username
-12.	Reset password
-13.	Display contents of cart (using recycler view)
-14.	Delivery and pick up option
-15.	Date picker and Time picker for delivery option
-16.	Order confirmation 
-17.	Background Music: user can manage it in control center
+10.	Listing categories
+11.	Change Username
+12.	Reset Password
+13.	Display Contents of Cart
+14.	Delivery (date picker and time picker)
+16.	Order Confirmation 
+17.	Background Music
 
 
 
