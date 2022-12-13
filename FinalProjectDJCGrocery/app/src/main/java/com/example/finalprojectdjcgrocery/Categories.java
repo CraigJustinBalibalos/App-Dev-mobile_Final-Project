@@ -81,6 +81,7 @@ public class Categories extends AppCompatActivity{
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(getApplicationContext(), Products.class);
+                i.putExtra("USERNAME", uName);
                 startActivity(i);
             }
         });

@@ -18,6 +18,7 @@ import android.widget.Toast;
 import com.example.finalprojectdjcgrocery.adapters.CartItemAdapter;
 import com.example.finalprojectdjcgrocery.pojo.CartItem;
 import com.example.finalprojectdjcgrocery.pojo.Product;
+import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -41,10 +42,15 @@ public class Checkout extends AppCompatActivity {
     DatabaseReference ref;
     CartItemAdapter adapter;
 
+    String uName;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_checkout);
+
+        uName = getIntent().getStringExtra("USERNAME");
+
         payNowBtn = findViewById(R.id.payBtn);
         recyclerView = findViewById(R.id.rv_cart);
         price = findViewById(R.id.priceTag);
@@ -53,32 +59,46 @@ public class Checkout extends AppCompatActivity {
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        ref = FirebaseDatabase.getInstance().getReference().child("Cart");
-        ref.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for(DataSnapshot dataSnapshot: snapshot.getChildren()){
-//                    String img = dataSnapshot.child("product_img").getValue().toString().trim();
-//                    imgList.add(img);
-//                    String pName = dataSnapshot.child("product_name").getValue().toString().trim();
-//                    nameList.add(pName);
-//                    String price = dataSnapshot.child("product_price").getValue().toString().trim();
-//                    priceList.add(price);
-//                    String qty = dataSnapshot.child("product_qty").getValue().toString().trim();
-//                    qtyList.add(qty);
-                    CartItem product = dataSnapshot.getValue(CartItem.class);
-                    product.setKey(dataSnapshot.getKey());
-                    productList.add(product);
-                }
-                adapter = new CartItemAdapter(Checkout.this, productList);
-                recyclerView.setAdapter(adapter);
-            }
+        FirebaseRecyclerOptions<CartItem> options =
+                new FirebaseRecyclerOptions.Builder<CartItem>()
+                        .setQuery(FirebaseDatabase.getInstance().getReference().child("Cart"), CartItem.class)
+                        .build();
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(Checkout.this, "Unable to load cart products", Toast.LENGTH_SHORT).show();
-            }
-        });
+        adapter = new CartItemAdapter(options);
+        recyclerView.setAdapter(adapter);
+
+
+//        ref = FirebaseDatabase.getInstance().getReference().child("Cart").child(uName);
+//        ref.addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                if(snapshot.exists()) {
+//                    for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+////                    String img = dataSnapshot.child("product_img").getValue().toString().trim();
+////                    imgList.add(img);
+////                    String pName = dataSnapshot.child("product_name").getValue().toString().trim();
+////                    nameList.add(pName);
+////                    String price = dataSnapshot.child("product_price").getValue().toString().trim();
+////                    priceList.add(price);
+////                    String qty = dataSnapshot.child("product_qty").getValue().toString().trim();
+////                    qtyList.add(qty);
+//                        CartItem product = dataSnapshot.getValue(CartItem.class);
+//                        product.setKey(dataSnapshot.getKey());
+//                        productList.add(product);
+//                    }
+//                    adapter = new CartItemAdapter(Checkout.this, productList);
+//                    recyclerView.setAdapter(adapter);
+//                }
+//                else{
+//                    Toast.makeText(Checkout.this, "Cart is Empty!", Toast.LENGTH_SHORT).show();
+//                }
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError error) {
+//                Toast.makeText(Checkout.this, "Unable to load cart products", Toast.LENGTH_SHORT).show();
+//            }
+//        });
 
         payNowBtn.setOnClickListener(new View.OnClickListener() {
             @Override

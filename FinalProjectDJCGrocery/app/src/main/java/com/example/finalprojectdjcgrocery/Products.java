@@ -38,6 +38,8 @@ public class Products extends AppCompatActivity {
     DatabaseReference ref;
     ProductsAdapter adapter;
 
+    public String uName;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,6 +52,8 @@ public class Products extends AppCompatActivity {
 
         products = new ArrayList<Product>();
 //        products = new ArrayList<String>();
+
+        uName = getIntent().getStringExtra("USERNAME");
 
         loadProducts();
 
@@ -78,6 +82,7 @@ public class Products extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(getApplicationContext(), Checkout.class);
+                i.putExtra("USERNAME", uName);
                 startActivity(i);
             }
         });
