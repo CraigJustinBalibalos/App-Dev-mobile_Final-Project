@@ -1,14 +1,17 @@
 # DJC Online Grocery
+![image](https://user-images.githubusercontent.com/82058058/213081134-d12a5b5b-3676-458b-812f-e18783038679.png)
 
-
-## Team Members:
+## Team Composition:
 - Jiamin Yuan
 - Dinal Patel
 - Craig Justin Balibalos
 - Collaborator: Sakkaravarthi Ramanathan
 
 ## Project Description:
-DJC is an online grocery store. 
+- User and admin are the two types of user roles available. 
+- First-time user can create a new account, and their account information will be saved for subsequent logins. 
+- Admin can create a new category and product, and seller can buy on our online store and change their account information. 
+
 ### Categories:
 Drink, Fruit, Vegetable, Meat, Etc.
 
