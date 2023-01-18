@@ -1,6 +1,5 @@
-# Application Development Final Project
+# DJC Online Grocery
 
-### Project Title: DJC Online Grocery 
 
 ## Team Members:
 - Jiamin Yuan
